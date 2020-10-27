@@ -4,7 +4,8 @@ public class Generator {
 
 
     
-    public final static String PATH = "data/temporal.csv";
+    public final static String PATHTOWRITE = "data/temporal.csv";
+    public final static String PATHTOREAD = "data/.csv"; // especificar
     public int count;
 
     public Generator() {
