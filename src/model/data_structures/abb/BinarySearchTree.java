@@ -1,10 +1,10 @@
 package model.data_structures.abb;
 
-public class BinarySearchTree<K extends Comparable<K>,V> implements BinarySearchTreeInterface<K,V>{
+public class BinarySearchTree<K extends Comparable<K>,T> implements BinarySearchTreeInterface<K,T>{
 	
 	//--------------------------------------------------------------------------------
 	
-	protected Node<K,V> root;
+	protected Node<K,T> root;
 	
 	protected int weight;
 	
@@ -19,13 +19,13 @@ public class BinarySearchTree<K extends Comparable<K>,V> implements BinarySearch
 	//--------------------------------------------------------------------------------
 	
 	//Adds equal elements to the right, always adds the element
-	public boolean add(K key, V value) {
-		return addBase(key,value) != null;
+	public boolean add(K key, T value, int height, int size) {
+		return addBase(key,value, height, size) != null;
 	}
 		
-	protected Node<K,V> addBase(K key, V value) {
+	protected Node<K,T> addBase(K key, T value,int height, int size) {
 		
-		Node<K,V> newNode = new Node<K,V>(key,value);
+		Node<K,T> newNode = new Node<K,T>(key,value,height, size);
 		
 		if(root != null) {		
 			return addRecursive(key,value,root,newNode);			
@@ -39,14 +39,14 @@ public class BinarySearchTree<K extends Comparable<K>,V> implements BinarySearch
 	
 	//--------------------------------------------------------------------------------
 	
-	private Node<K,V> addRecursive(K key, V value, Node<K,V> currentNode, Node<K,V> newNode){
+	private Node<K,T> addRecursive(K key, T value, Node<K,T> currentNode, Node<K,T> newNode){
 		
 		if(key.compareTo(currentNode.getKey()) > 0) {
 			
-			Node<K,V> right = currentNode.getRight();
+			Node<K,T> right = currentNode.getRight();
 			
 			if(right != null) {		
-				Node<K,V> addedNode = addRecursive(key,value,right,newNode);
+				Node<K,T> addedNode = addRecursive(key,value,right,newNode);
 				
 				if(addedNode != null) {
 					right.update();
@@ -63,10 +63,10 @@ public class BinarySearchTree<K extends Comparable<K>,V> implements BinarySearch
 			}			
 		}		
 		else if(key.compareTo(currentNode.getKey()) < 0) {			
-			Node<K,V> left = currentNode.getLeft();
+			Node<K,T> left = currentNode.getLeft();
 			
 			if(left != null) {				
-				Node<K,V> addedNode =  addRecursive(key,value,left,newNode);	
+				Node<K,T> addedNode =  addRecursive(key,value,left,newNode);	
 				
 				if(addedNode != null) {
 					left.update();
@@ -90,9 +90,9 @@ public class BinarySearchTree<K extends Comparable<K>,V> implements BinarySearch
 	//--------------------------------------------------------------------------------
 
 	@Override
-	public boolean update(K key, V value) {
+	public boolean update(K key, T value) {
 		
-		Node<K,V> nodeToUpdate = searchNode(key);
+		Node<K,T> nodeToUpdate = searchNode(key);
 		
 		if(nodeToUpdate != null) {
 			nodeToUpdate.setValue(value);
@@ -123,7 +123,7 @@ public class BinarySearchTree<K extends Comparable<K>,V> implements BinarySearch
 	
 	//--------------------------------------------------------------------------------
 	
-	private boolean removeRecursive(K key, Node<K,V> currentNode, Node<K,V> parent){
+	private boolean removeRecursive(K key, Node<K,T> currentNode, Node<K,T> parent){
 		if(currentNode != null) {
 			if(key.compareTo(currentNode.getKey()) < 0) {
 				return removeRecursive(key, currentNode.getLeft(),currentNode);
@@ -182,7 +182,7 @@ public class BinarySearchTree<K extends Comparable<K>,V> implements BinarySearch
 					
 				}
 				else {
-					Node<K,V> rightMin = getMin(currentNode.getRight());
+					Node<K,T> rightMin = getMin(currentNode.getRight());
 										
 					currentNode.setKey(rightMin.getKey());
 					currentNode.setValue(rightMin.getValue());					
@@ -201,7 +201,7 @@ public class BinarySearchTree<K extends Comparable<K>,V> implements BinarySearch
 	
 	//--------------------------------------------------------------------------------
 	
-	private Node<K,V> getMin(Node<K,V> node){
+	private Node<K,T> getMin(Node<K,T> node){
 		
 		while(node.getLeft() != null) {
 			
@@ -216,7 +216,7 @@ public class BinarySearchTree<K extends Comparable<K>,V> implements BinarySearch
 	//--------------------------------------------------------------------------------
 	
 	@Override
-	public V search(K key) {	
+	public T search(K key) {	
 		
 		if(root != null) {
 			
@@ -234,7 +234,7 @@ public class BinarySearchTree<K extends Comparable<K>,V> implements BinarySearch
 	
 	//--------------------------------------------------------------------------------
 	
-	private V searchRecursive(K key, Node<K,V> currentNode){	
+	private T searchRecursive(K key, Node<K,T> currentNode){	
 		
 		if(key.compareTo(currentNode.getKey()) == 0) {
 			
@@ -256,7 +256,7 @@ public class BinarySearchTree<K extends Comparable<K>,V> implements BinarySearch
 		
 	}
 	
-	private Node<K,V> searchNode(K key){
+	private Node<K,T> searchNode(K key){
 		if(root != null) {
 			
 			return searchNodeRecursive(key,root);
@@ -270,7 +270,7 @@ public class BinarySearchTree<K extends Comparable<K>,V> implements BinarySearch
 		}
 	}
 	
-	private Node<K,V> searchNodeRecursive(K key, Node<K,V> currentNode){	
+	private Node<K,T> searchNodeRecursive(K key, Node<K,T> currentNode){	
 		
 		if(key.compareTo(currentNode.getKey()) == 0) {
 			
@@ -303,7 +303,7 @@ public class BinarySearchTree<K extends Comparable<K>,V> implements BinarySearch
 		return getHeight(root);
 	}
 	
-	private int getHeight(Node<K,V> root) {	
+	private int getHeight(Node<K,T> root) {	
 		
 		if(root == null) {
 			
@@ -322,10 +322,39 @@ public class BinarySearchTree<K extends Comparable<K>,V> implements BinarySearch
 	}
 
 	//For testing purposes
-	protected Node<K,V> getRoot() {
+	protected Node<K,T> getRoot() {
 		return root;
 	}
 	
 	//--------------------------------------------------------------------------------
 	
+	
+	public void preOrden(Node<K,T> node) {
+		if(node!=null) {
+			System.out.print(node.getKey() + ", ");
+			preOrden(node.getLeft());
+			preOrden(node.getRight());
+		}
+	}
+	
+	   public void inOrden(Node<K,T> n)
+	    {
+	        if (n!=null)
+	        {
+	            inOrden(n.left);
+	            System.out.print(n.value + ", ");
+	            inOrden(n.right);
+	        }
+	    }
+
+
+	    public void postOrden(Node<K,T> n)
+	    {
+	        if (n!=null)
+	        {
+	            postOrden(n.left);
+	            postOrden(n.right);
+	            System.out.print(n.value + ", ");
+	        }
+	    }
 }
