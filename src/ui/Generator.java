@@ -14,13 +14,12 @@ import java.util.Random;
 public class Generator {
 
     private final static String PATHTOWRITE = "data/temporal.csv", PATHTOREADNAMES = "data/babynames-clean.csv",
-            PATHTOREADLASTNAMES = "data/Names_2010Census.csv";
+            PATHTOREADLASTNAMES = "data/Names_2010Census.csv",PATHTOREADCOUNTRIES = "data/country_p.csv";
 
     private final static double AGE_RANGE_0_TO_14 = 0.1862;
     private final static double AGE_RANGE_15_TO_24 = 0.1312 + AGE_RANGE_0_TO_14;
     private final static double AGE_RANGE_25_TO_54 = 0.3729 + AGE_RANGE_15_TO_24;
     private final static double AGE_RANGE_55_TO_64 = 0.1294 + AGE_RANGE_25_TO_54;
-    // 2246245
 
     public int count, q;
 
@@ -32,14 +31,14 @@ public class Generator {
     }
 
     public void generateData(int q) throws IOException {
-        // generar datos en txt (Ramdomizado basodo en los datasets)
+
         this.q = q;
 
         loadDataToGenerate();
 
         PrintWriter pw = new PrintWriter(new FileWriter(PATHTOWRITE));
 
-        pw.write("name,lastname,gender,age");
+        pw.write("name,lastname,gender,age\n");
 
         for (int i = 0; i < q; i++) {
 
@@ -54,10 +53,10 @@ public class Generator {
 
     private String getRandomPerson() {
         int iName = (int) (Math.random() * (double) names.size()),
-                iLName = (int) (Math.random() * (double) names.size());
+                iLName = (int) (Math.random() * (double) lastNames.size());
         String nameAndGender = names.remove(iName).toUpperCase();
         String lastName = lastNames.remove(iLName);
-        String gender = (nameAndGender.split(",")[1].equals("BOY")) ? "MALE" : "FEMALE";
+        String gender = (nameAndGender.split(";")[1].equals("BOY")) ? "MALE" : "FEMALE";
 
         int age;
         Random rN = new Random();
