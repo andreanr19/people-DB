@@ -1,8 +1,7 @@
-package ui;
+package model;
 
 import java.io.BufferedReader;
 import java.io.File;
-
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -13,21 +12,26 @@ import java.util.Random;
 
 public class Generator {
 
-    private final static String PATHTOWRITE = "data/temporal.csv", PATHTOREADNAMES = "data/babynames-clean.csv",
-            PATHTOREADLASTNAMES = "data/Names_2010Census.csv",PATHTOREADCOUNTRIES = "data/country_p.csv";
+    private final static String PATHTOREADNAMES = "data/babynames-clean.csv",
+            PATHTOREADLASTNAMES = "data/Names_2010Census.csv", PATHTOREADCOUNTRIES = "data/country_p.csv";
+    public final static String PATHTOWRITE = "data/temporal.csv";
+
+    public final static int MAX_CAPACITY = 1022277970;
 
     private final static double AGE_RANGE_0_TO_14 = 0.1862;
     private final static double AGE_RANGE_15_TO_24 = 0.1312 + AGE_RANGE_0_TO_14;
     private final static double AGE_RANGE_25_TO_54 = 0.3729 + AGE_RANGE_15_TO_24;
     private final static double AGE_RANGE_55_TO_64 = 0.1294 + AGE_RANGE_25_TO_54;
 
-    public int count, q;
+    public int count, q, countID;
 
     private List<String> names, lastNames;
 
     public Generator() {
+
         names = new ArrayList<>();
         lastNames = new ArrayList<>();
+        countID = 0000000000;
     }
 
     public void generateData(int q) throws IOException {
@@ -38,9 +42,9 @@ public class Generator {
 
         PrintWriter pw = new PrintWriter(new FileWriter(PATHTOWRITE));
 
-        pw.write("name,lastname,gender,age\n");
+        pw.write("id,name,lastname,gender,age\n");
 
-        for (int i = 0; i < q; i++) {
+        for (int i = 0; i < q && count < MAX_CAPACITY; i++) {
 
             pw.write(getRandomPerson());
 
@@ -54,9 +58,16 @@ public class Generator {
     private String getRandomPerson() {
         int iName = (int) (Math.random() * (double) names.size()),
                 iLName = (int) (Math.random() * (double) lastNames.size());
+        String tID = countID + "";
+        for (int i = 0; i < 10 && tID.length() < 10; i++) {
+
+            tID = "0" + tID;
+
+        }
+
         String nameAndGender = names.remove(iName).toUpperCase();
         String lastName = lastNames.remove(iLName);
-        String gender = (nameAndGender.split(";")[1].equals("BOY")) ? "MALE" : "FEMALE";
+        String gender = (nameAndGender.split(";")[1].equals("BOY")) ? "m" : "f";
 
         int age;
         Random rN = new Random();
@@ -76,8 +87,8 @@ public class Generator {
             age = rN.nextInt(89 - 65 + 1) + 65;
 
         }
-
-        return nameAndGender.split(",")[0] + "," + lastName + "," + gender + "," + age + "\n";
+        countID++;
+        return tID + "," + nameAndGender.split(";")[0] + "," + lastName + "," + gender + "," + age + "," + "0" + "\n";
     }
 
     private void loadDataToGenerate() throws IOException {
@@ -91,10 +102,6 @@ public class Generator {
             lastNames.add(brLNames.readLine().split(",")[0]);
         }
 
-    }
-
-    public void sendToDB() {
-        // enviar File object a DBDriver para que este lea el archivo
     }
 
 }

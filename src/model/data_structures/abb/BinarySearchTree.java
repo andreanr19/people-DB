@@ -4,7 +4,7 @@ public class BinarySearchTree<K extends Comparable<K>,T> implements BinarySearch
 	
 	//--------------------------------------------------------------------------------
 	
-	protected Node<K,T> root;
+	public Node<K,T> root;
 	
 	protected int weight;
 	

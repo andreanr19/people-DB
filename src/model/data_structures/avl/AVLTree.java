@@ -5,7 +5,6 @@ import model.data_structures.abb.Node;
 
 public class AVLTree<K extends Comparable<K>, T> extends BinarySearchTree<K, T> {
 
- 
 	public int height() {
 		return height(root);
 	}
@@ -16,7 +15,7 @@ public class AVLTree<K extends Comparable<K>, T> extends BinarySearchTree<K, T> 
 		return node.getHeight();
 
 	}
-	
+
 	public int size() {
 		return size(root);
 	}
@@ -26,7 +25,8 @@ public class AVLTree<K extends Comparable<K>, T> extends BinarySearchTree<K, T> 
 			return 0;
 		return node.getSize();
 	}
-	public void put(T data, K key) {
+
+	public void put(K key, T data) {
 		root = put(root, data, key);
 	}
 
@@ -67,8 +67,8 @@ public class AVLTree<K extends Comparable<K>, T> extends BinarySearchTree<K, T> 
 				node.setRight(rotateRight(node.getRight()));
 			}
 			node = rotateLeft(node);
-		}else if(balanceFactor(node)< -1) {
-			if(balanceFactor(node.getLeft())>0) {
+		} else if (balanceFactor(node) < -1) {
+			if (balanceFactor(node.getLeft()) > 0) {
 				node.setLeft(rotateLeft(node.getLeft()));
 			}
 			node = rotateRight(node);
@@ -143,8 +143,5 @@ public class AVLTree<K extends Comparable<K>, T> extends BinarySearchTree<K, T> 
 			return node;
 		return min(node.getLeft());
 	}
-
-
-
 
 }
