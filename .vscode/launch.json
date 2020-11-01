@@ -1,0 +1,36 @@
+{
+    // Use IntelliSense para saber los atributos posibles.
+    // Mantenga el puntero para ver las descripciones de los existentes atributos.
+    // Para más información, visite: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Debug (Launch) - Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Main<people-DB>",
+            "request": "launch",
+            "mainClass": "model.data_structures_trie.Main",
+            "projectName": "people-DB"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Main<people-DB>(1)",
+            "request": "launch",
+            "mainClass": "ui.Main",
+            "projectName": "people-DB"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Main2<people-DB>",
+            "request": "launch",
+            "vmArgs": "--module-path C:\\javafx-sdk-11.0.2\\lib --add-modules=javafx.controls,javafx.fxml",
+            "mainClass": "ui.Main2",
+            "projectName": "people-DB"
+        }
+    ]
+}

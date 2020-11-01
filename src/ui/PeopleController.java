@@ -15,117 +15,193 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 
 public class PeopleController {
-	
-	  @FXML
-	    private AnchorPane generatePeopleAP;
 
-	    @FXML
-	    private TextField amountGeneratorTF;
+	@FXML
+	private AnchorPane generatePeopleAP;
 
-	    @FXML
-	    private ProgressBar progressBar;
+	@FXML
+	private TextField amountGeneratorTF;
 
-	    @FXML
-	    private TextField idCreateTF;
+	@FXML
+	private ProgressBar progressBar;
 
-	    @FXML
-	    private TextField nameCreateTF;
+	@FXML
+	private TextField idCreateTF;
 
-	    @FXML
-	    private TextField lastNameTF;
+	@FXML
+	private TextField nameCreateTF;
 
-	    @FXML
-	    private TextField birthDateTF;
+	@FXML
+	private TextField lastNameTF;
 
-	    @FXML
-	    private RadioButton femaleRB;
+	@FXML
+	private TextField birthDateTF;
 
-	    @FXML
-	    private ToggleGroup genderSel;
+	@FXML
+	private RadioButton femaleRB;
 
-	    @FXML
-	    private RadioButton manRB;
+	@FXML
+	private ToggleGroup genderSel;
 
-	    @FXML
-	    private TextField heightCreateTF;
+	@FXML
+	private RadioButton manRB;
 
-	    @FXML
-	    private TextField idRemoveTF;
+	@FXML
+	private TextField heightCreateTF;
 
-	    @FXML
-	    private TextField nameRemoveTF;
+	@FXML
+	private TextField idRemoveTF;
 
-	    @FXML
-	    private TextField lastNRemoveTF;
+	@FXML
+	private TextField nameRemoveTF;
 
-	    @FXML
-	    private TextField heightRemoveTF;
+	@FXML
+	private TextField lastNRemoveTF;
 
-	    @FXML
-	    private TextField genderRemoveTF;
+	@FXML
+	private TextField heightRemoveTF;
 
-	    @FXML
-	    private TextField birthDateRemoveTF;
+	@FXML
+	private TextField genderRemoveTF;
 
-	    @FXML
-	    private TextField idSearchTF;
+	@FXML
+	private TextField birthDateRemoveTF;
 
-	    @FXML
-	    private TextField nameSearchTF;
+	@FXML
+	private TextField idSearchTF;
 
-	    @FXML
-	    private TextField lastNSearchTF;
+	@FXML
+	private TextField nameSearchTF;
 
-	    @FXML
-	    private TextField heightSearchTF;
+	@FXML
+	private TextField lastNSearchTF;
 
-	    @FXML
-	    private TextField genderSearchTF;
+	@FXML
+	private TextField heightSearchTF;
 
-	    @FXML
-	    private RadioButton nameModifyRB;
+	@FXML
+	private TextField genderSearchTF;
 
-	    @FXML
-	    private ToggleGroup modifyOptions;
+	@FXML
+	private RadioButton nameModifyRB;
 
-	    @FXML
-	    private RadioButton lastNModifyRB;
+	@FXML
+	private ToggleGroup modifyOptions;
 
-	    @FXML
-	    private RadioButton idModifyRB;
+	@FXML
+	private RadioButton lastNModifyRB;
 
-	    @FXML
-	    private RadioButton heightModifyRB;
+	@FXML
+	private RadioButton idModifyRB;
 
-	    @FXML
-	    private RadioButton genderModifyRB;
+	@FXML
+	private RadioButton heightModifyRB;
 
-	    @FXML
-	    private TextField idModifyTF;
+	@FXML
+	private RadioButton genderModifyRB;
 
-	    @FXML
-	    private Button checkModifyBT;
+	@FXML
+	private TextField idModifyTF;
 
-	    @FXML
-	    private Pane modifyPane;
-	    
-	    @FXML
-		void modifyNamePane(ActionEvent event) throws IOException {
-			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("deleteClientAccount.fxml"));
-			fxmlLoader.setController(this);
-			Parent clientAccount = fxmlLoader.load();
-			modifyPane.getChildren().clear();
-			modifyPane.getChildren().add(clientAccount);
-		}
-	    
-	    @FXML
-		void modifyLastNamePane(ActionEvent event) throws IOException {
-			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("deleteClientAccount.fxml"));
-			fxmlLoader.setController(this);
-			Parent clientAccount = fxmlLoader.load();
-			modifyPane.getChildren().clear();
-			modifyPane.getChildren().add(clientAccount);
-		}
+	@FXML
+	private Button checkModifyBT;
 
+	@FXML
+	private Pane modifyPane;
+
+	@FXML
+	private Pane modifyNameFXML;
+
+	@FXML
+	private TextField newNameTF;
+
+	@FXML
+	private Pane modifyLastNameFXML;
+
+	@FXML
+	private TextField newLastNameTF;
+
+	@FXML
+	private Pane modifyHeightFXML;
+
+	@FXML
+	private TextField newHeightTF;
+
+	@FXML
+	private Pane modifyGenderFXML;
+
+	@FXML
+	private RadioButton femaleNewRB;
+
+	@FXML
+	private ToggleGroup newGender;
+
+	@FXML
+	private RadioButton maleNewRB;
+
+	@FXML
+	void changeGenderBT(ActionEvent event) {
+
+	}
+
+	@FXML
+	void changeHeightBT(ActionEvent event) {
+
+	}
+
+	@FXML
+	void changeLastNameBT(ActionEvent event) {
+
+	}
+
+	@FXML
+	void changeNameBT(ActionEvent event) {
+
+	}
+
+	@FXML
+	void modifyNamePane(ActionEvent event) throws IOException {
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("modifyNameFXML.fxml"));
+		fxmlLoader.setController(this);
+		Parent nameFXML = fxmlLoader.load();
+		modifyPane.getChildren().clear();
+		modifyPane.getChildren().add(nameFXML);
+	}
+
+	@FXML
+	void modifyLastNamePane(ActionEvent event) throws IOException {
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("modifyLastNameFXML.fxml"));
+		fxmlLoader.setController(this);
+		Parent lastNameFXML = fxmlLoader.load();
+		modifyPane.getChildren().clear();
+		modifyPane.getChildren().add(lastNameFXML);
+	}
+
+	@FXML
+	void modifyIdPane(ActionEvent event) throws IOException {
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("modifyIdFXML.fxml"));
+		fxmlLoader.setController(this);
+		Parent idFXML = fxmlLoader.load();
+		modifyPane.getChildren().clear();
+		modifyPane.getChildren().add(idFXML);
+	}
+
+	@FXML
+	void modifyHeightPane(ActionEvent event) throws IOException {
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("modifyHeightFXML.fxml"));
+		fxmlLoader.setController(this);
+		Parent heightFXML = fxmlLoader.load();
+		modifyPane.getChildren().clear();
+		modifyPane.getChildren().add(heightFXML);
+	}
+
+	@FXML
+	void modifyGenderPane(ActionEvent event) throws IOException {
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("modifyGenderFXML.fxml"));
+		fxmlLoader.setController(this);
+		Parent genderFXML = fxmlLoader.load();
+		modifyPane.getChildren().clear();
+		modifyPane.getChildren().add(genderFXML);
+	}
 
 }

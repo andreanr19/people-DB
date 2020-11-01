@@ -19,16 +19,16 @@
          <content>
             <AnchorPane fx:id="generatePeopleAP" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
-                  <TextField fx:id="amountGeneratorTF" layoutX="185.0" layoutY="120.0" prefHeight="30.0" prefWidth="251.0" promptText="Cantidad personas a generar" />
-                  <Button fx:id="generateBT" layoutX="185.0" layoutY="185.0" mnemonicParsing="false" text="Generar" />
-                  <Button fx:id="generateMaxBT" layoutX="333.0" layoutY="185.0" mnemonicParsing="false" text="Generar máxima" />
+                  <TextField fx:id="amountGeneratorTF" layoutX="176.0" layoutY="120.0" prefHeight="30.0" prefWidth="267.0" promptText="Cantidad personas a generar" />
+                  <Button fx:id="generateBT" layoutX="177.0" layoutY="185.0" mnemonicParsing="false" text="Generar" />
+                  <Button fx:id="generateMaxBT" layoutX="291.0" layoutY="185.0" mnemonicParsing="false" text="Generar máxima cantidad" />
                   <Label layoutX="174.0" layoutY="89.0" prefHeight="17.0" prefWidth="273.0" text="Ingrese la cantidad de personas que desea generar" />
                   <Label layoutX="143.0" layoutY="15.0" text="People Database">
                      <font>
                         <Font name="System Bold" size="42.0" />
                      </font>
                   </Label>
-                  <ProgressBar fx:id="progressBar" layoutX="98.0" layoutY="281.0" prefHeight="18.0" prefWidth="399.0" progress="0.0" />
+                  <ProgressBar fx:id="progressBar" layoutX="98.0" layoutY="290.0" prefHeight="18.0" prefWidth="399.0" progress="0.0" />
                   <Label layoutX="206.0" layoutY="255.0" text="Progreso de generación de los datos" />
                </children>
             </AnchorPane>
@@ -38,20 +38,20 @@
       <content>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
-                  <Label layoutX="159.0" layoutY="18.0" text="Ingresar la información de la persona que se desea crear" />
-                  <TextField fx:id="idCreateTF" layoutX="113.0" layoutY="53.0" prefHeight="25.0" prefWidth="291.0" promptText="Ingrese el id de la persona" />
-                  <TextField fx:id="nameCreateTF" layoutX="113.0" layoutY="98.0" prefHeight="25.0" prefWidth="291.0" promptText="Ingrese el nombre de la persona" />
-                  <Button fx:id="checkAddBT" layoutX="451.0" layoutY="62.0" mnemonicParsing="false" text="Verificar si existe" />
-                  <TextField fx:id="lastNameTF" layoutX="113.0" layoutY="144.0" prefHeight="25.0" prefWidth="291.0" promptText="Ingrese el apellido de la persona" />
-                  <TextField fx:id="birthDateTF" layoutX="113.0" layoutY="191.0" prefHeight="25.0" prefWidth="291.0" promptText="Ingrese la fecha de nacimiento de la persona" />
-                  <RadioButton fx:id="femaleRB" layoutX="116.0" layoutY="307.0" mnemonicParsing="false" text="Femenino">
+                  <Label layoutX="151.0" layoutY="11.0" text="Ingresar la información de la persona que se desea crear" />
+                  <TextField fx:id="idCreateTF" layoutX="113.0" layoutY="43.0" prefHeight="25.0" prefWidth="311.0" promptText="Ingrese el id de la persona" />
+                  <TextField fx:id="nameCreateTF" layoutX="113.0" layoutY="87.0" prefHeight="25.0" prefWidth="311.0" promptText="Ingrese el nombre de la persona" />
+                  <Button fx:id="checkAddBT" layoutX="456.0" layoutY="43.0" mnemonicParsing="false" text="Verificar si existe" />
+                  <TextField fx:id="lastNameTF" layoutX="113.0" layoutY="130.0" prefHeight="25.0" prefWidth="312.0" promptText="Ingrese el apellido de la persona" />
+                  <TextField fx:id="birthDateTF" layoutX="113.0" layoutY="175.0" prefHeight="25.0" prefWidth="313.0" promptText="Ingrese la fecha de nacimiento de la persona" />
+                  <RadioButton fx:id="femaleRB" layoutX="116.0" layoutY="290.0" mnemonicParsing="false" text="Femenino">
                      <toggleGroup>
                         <ToggleGroup fx:id="genderSel" />
                      </toggleGroup></RadioButton>
-                  <Label layoutX="113.0" layoutY="278.0" text="Género de la persona" />
-                  <RadioButton fx:id="manRB" layoutX="323.0" layoutY="307.0" mnemonicParsing="false" text="Masculino" toggleGroup="$genderSel" />
-                  <TextField fx:id="heightCreateTF" layoutX="114.0" layoutY="237.0" prefHeight="25.0" prefWidth="291.0" promptText="Ingrese la estatura de la persona" />
-                  <Button fx:id="addPersonBT" layoutX="190.0" layoutY="339.0" mnemonicParsing="false" text="Agregar a la persona" />
+                  <Label layoutX="113.0" layoutY="259.0" text="Género de la persona" />
+                  <RadioButton fx:id="manRB" layoutX="343.0" layoutY="296.0" mnemonicParsing="false" text="Masculino" toggleGroup="$genderSel" />
+                  <TextField fx:id="heightCreateTF" layoutX="114.0" layoutY="217.0" prefHeight="25.0" prefWidth="313.0" promptText="Ingrese la estatura de la persona" />
+                  <Button fx:id="addPersonBT" layoutX="245.0" layoutY="330.0" mnemonicParsing="false" text="Agregar a la persona" />
                </children></AnchorPane>
       </content>
     </Tab>
@@ -103,17 +103,17 @@
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
                   <Label layoutX="186.0" layoutY="14.0" text="Seleccione que dato desea modificar de la persona" />
-                  <RadioButton fx:id="nameModifyRB" layoutX="26.0" layoutY="52.0" mnemonicParsing="false" text="Nombre">
+                  <RadioButton fx:id="nameModifyRB" layoutX="26.0" layoutY="52.0" mnemonicParsing="false" onAction="#modifyNamePane" text="Nombre">
                      <toggleGroup>
                         <ToggleGroup fx:id="modifyOptions" />
                      </toggleGroup>
                   </RadioButton>
-                  <RadioButton fx:id="lastNModifyRB" layoutX="130.0" layoutY="52.0" mnemonicParsing="false" text="Apellido" toggleGroup="$modifyOptions" />
-                  <RadioButton fx:id="idModifyRB" layoutX="246.0" layoutY="52.0" mnemonicParsing="false" text="Código" toggleGroup="$modifyOptions" />
-                  <RadioButton fx:id="heightModifyRB" layoutX="366.0" layoutY="52.0" mnemonicParsing="false" text="Estatura" toggleGroup="$modifyOptions" />
-                  <RadioButton fx:id="genderModifyRB" layoutX="496.0" layoutY="52.0" mnemonicParsing="false" text="Género" toggleGroup="$modifyOptions" />
+                  <RadioButton fx:id="lastNModifyRB" layoutX="130.0" layoutY="52.0" mnemonicParsing="false" onAction="#modifyLastNamePane" text="Apellido" toggleGroup="$modifyOptions" />
+                  <RadioButton fx:id="idModifyRB" layoutX="252.0" layoutY="52.0" mnemonicParsing="false" onAction="#modifyIdPane" text="Código" toggleGroup="$modifyOptions" />
+                  <RadioButton fx:id="heightModifyRB" layoutX="366.0" layoutY="52.0" mnemonicParsing="false" onAction="#modifyHeightPane" text="Estatura" toggleGroup="$modifyOptions" />
+                  <RadioButton fx:id="genderModifyRB" layoutX="496.0" layoutY="52.0" mnemonicParsing="false" onAction="#modifyGenderPane" text="Género" toggleGroup="$modifyOptions" />
                   <Separator layoutY="87.0" prefHeight="0.0" prefWidth="600.0" />
-                  <Label layoutX="202.0" layoutY="95.0" text="Ingrese el id de la persona que desea modificar" />
+                  <Label layoutX="172.0" layoutY="95.0" text="Ingrese el id de la persona que desea modificar" />
                   <TextField fx:id="idModifyTF" layoutX="86.0" layoutY="126.0" prefHeight="25.0" prefWidth="273.0" />
                   <Button fx:id="checkModifyBT" layoutX="437.0" layoutY="124.0" mnemonicParsing="false" text="Verificar" />
                   <Separator layoutY="171.0" prefHeight="0.0" prefWidth="600.0" />
