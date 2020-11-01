@@ -5,11 +5,10 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.Pane?>
 
-
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="197.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<Pane fx:id="modifyNameFXML" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="197.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label layoutX="162.0" layoutY="21.0" text="Ingrese la información nueva por la que desea cambiar" />
-      <TextField layoutX="186.0" layoutY="70.0" prefHeight="25.0" prefWidth="241.0" promptText="Ingrese el nuevo nombre" />
-      <Button layoutX="259.0" layoutY="124.0" mnemonicParsing="false" text="Cambiar nombre" />
+      <TextField fx:id="newNameTF" layoutX="186.0" layoutY="70.0" prefHeight="25.0" prefWidth="241.0" promptText="Ingrese el nuevo nombre" />
+      <Button layoutX="259.0" layoutY="124.0" mnemonicParsing="false" onAction="#changeNameBT" text="Cambiar nombre" />
    </children>
 </Pane>
