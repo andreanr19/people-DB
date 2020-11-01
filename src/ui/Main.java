@@ -16,6 +16,15 @@ public class Main {
 		DBDriver db = new DBDriver();
 
 		db.loadGeneratedData();
+		
+		db.addWordtoTheTrieByName();
+		System.out.println(db.getAt().predictCompletions("w", 3).toString());
+
+		db.addWordtoTheTrieByLastName();
+		System.out.println(db.getAt().predictCompletions("m", 4).toString());
+		
+		db.addWordtoTheTrieByNameAndLastName();
+		System.out.println(db.getAt().predictCompletions("w", 4).toString());
 
 	}
 

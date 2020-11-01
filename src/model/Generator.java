@@ -102,6 +102,8 @@ public class Generator {
             lastNames.add(brLNames.readLine().split(",")[0]);
         }
 
+        brNames.close();
+        brLNames.close();
     }
 
 }
