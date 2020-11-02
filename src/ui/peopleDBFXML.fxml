@@ -28,7 +28,7 @@
                         <Font name="System Bold" size="42.0" />
                      </font>
                   </Label>
-                  <ProgressBar fx:id="progressBar" layoutX="98.0" layoutY="290.0" prefHeight="18.0" prefWidth="399.0" progress="0.0" />
+                  <ProgressBar fx:id="progressBar" layoutX="99.0" layoutY="290.0" prefHeight="18.0" prefWidth="399.0" progress="0.0" />
                   <Label layoutX="206.0" layoutY="255.0" text="Progreso de generación de los datos" />
                </children>
             </AnchorPane>
@@ -68,11 +68,11 @@
                   <Label layoutX="30.0" layoutY="238.0" text="Estatura" />
                   <Label layoutX="29.0" layoutY="279.0" text="Género" />
                   <Label layoutX="32.0" layoutY="320.0" text="Fecha nacimiento" />
-                  <TextField fx:id="nameRemoveTF" layoutX="125.0" layoutY="154.0" prefHeight="25.0" prefWidth="291.0" />
-                  <TextField fx:id="lastNRemoveTF" layoutX="125.0" layoutY="194.0" prefHeight="25.0" prefWidth="291.0" />
-                  <TextField fx:id="heightRemoveTF" layoutX="125.0" layoutY="234.0" prefHeight="25.0" prefWidth="291.0" />
-                  <TextField fx:id="genderRemoveTF" layoutX="125.0" layoutY="275.0" prefHeight="25.0" prefWidth="291.0" />
-                  <TextField fx:id="birthDateRemoveTF" layoutX="142.0" layoutY="316.0" prefHeight="25.0" prefWidth="291.0" />
+                  <TextField fx:id="nameRemoveTF" editable="false" layoutX="125.0" layoutY="154.0" prefHeight="25.0" prefWidth="291.0" />
+                  <TextField fx:id="lastNRemoveTF" editable="false" layoutX="125.0" layoutY="194.0" prefHeight="25.0" prefWidth="291.0" />
+                  <TextField fx:id="heightRemoveTF" editable="false" layoutX="125.0" layoutY="234.0" prefHeight="25.0" prefWidth="291.0" />
+                  <TextField fx:id="genderRemoveTF" editable="false" layoutX="125.0" layoutY="275.0" prefHeight="25.0" prefWidth="291.0" />
+                  <TextField fx:id="birthDateRemoveTF" editable="false" layoutX="142.0" layoutY="316.0" prefHeight="25.0" prefWidth="291.0" />
                   <Label layoutX="188.0" layoutY="128.0" text="Datos de la persona que se desea eliminar" />
                   <Button fx:id="removePersonBT" layoutX="451.0" layoutY="220.0" mnemonicParsing="false" text="Remover persona" />
                </children></AnchorPane>
@@ -87,10 +87,10 @@
                   <Button fx:id="searchBT" layoutX="421.0" layoutY="61.0" mnemonicParsing="false" text="Buscar" />
                   <Separator layoutX="-16.0" layoutY="110.0" prefHeight="0.0" prefWidth="619.0" />
                   <Label layoutX="207.0" layoutY="130.0" text="Información de la persona buscada" />
-                  <TextField fx:id="nameSearchTF" layoutX="129.0" layoutY="166.0" prefHeight="25.0" prefWidth="359.0" />
-                  <TextField fx:id="lastNSearchTF" layoutX="130.0" layoutY="208.0" prefHeight="25.0" prefWidth="355.0" />
-                  <TextField fx:id="heightSearchTF" layoutX="131.0" layoutY="248.0" prefHeight="25.0" prefWidth="354.0" />
-                  <TextField fx:id="genderSearchTF" layoutX="132.0" layoutY="293.0" prefHeight="25.0" prefWidth="354.0" />
+                  <TextField fx:id="nameSearchTF" editable="false" layoutX="129.0" layoutY="166.0" prefHeight="25.0" prefWidth="359.0" />
+                  <TextField fx:id="lastNSearchTF" editable="false" layoutX="130.0" layoutY="208.0" prefHeight="25.0" prefWidth="355.0" />
+                  <TextField fx:id="heightSearchTF" editable="false" layoutX="131.0" layoutY="248.0" prefHeight="25.0" prefWidth="354.0" />
+                  <TextField fx:id="genderSearchTF" editable="false" layoutX="132.0" layoutY="293.0" prefHeight="25.0" prefWidth="354.0" />
                   <Label layoutX="41.0" layoutY="170.0" text="Nombre" />
                   <Label layoutX="43.0" layoutY="212.0" text="Apellido" />
                   <Label layoutX="43.0" layoutY="252.0" text="Estatura" />
