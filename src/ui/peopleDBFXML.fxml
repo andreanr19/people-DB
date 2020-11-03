@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="546.0" prefWidth="743.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="546.0" prefWidth="743.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
   <tabs>
       <Tab text="Generar">
          <content>
@@ -51,7 +51,7 @@
                      <toggleGroup>
                         <ToggleGroup fx:id="genderSel" />
                      </toggleGroup></RadioButton>
-                  <Label disable="true" layoutX="159.0" layoutY="330.0" text="Género de la persona:" />
+                  <Label layoutX="159.0" layoutY="330.0" text="Género de la persona:" />
                   <RadioButton fx:id="manRB" disable="true" layoutX="342.0" layoutY="356.0" mnemonicParsing="false" text="Masculino" toggleGroup="$genderSel" />
                   <TextField fx:id="heightCreateTF" layoutX="160.0" layoutY="274.0" prefHeight="25.0" prefWidth="313.0" promptText="Ingrese la estatura (cms)" />
                   <Label layoutX="22.0" layoutY="14.0" text="Nueva persona">
@@ -60,7 +60,7 @@
                      </font>
                   </Label>
                   <DatePicker fx:id="birthDateTF" disable="true" layoutX="159.0" layoutY="219.0" prefHeight="26.0" prefWidth="314.0" promptText="Seleccione la fecha de nacimiento" />
-                  <Button fx:id="addPersonBT" layoutX="333.0" layoutY="424.0" mnemonicParsing="false" onAction="#addPersonBT" text="Agregar">
+                  <Button fx:id="addPersonBT" disable="true" layoutX="333.0" layoutY="424.0" mnemonicParsing="false" onAction="#addPersonBT" text="Agregar">
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font>
