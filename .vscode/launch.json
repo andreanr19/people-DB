@@ -1,9 +1,25 @@
 {
-    // Use IntelliSense para saber los atributos posibles.
-    // Mantenga el puntero para ver las descripciones de los existentes atributos.
-    // Para más información, visite: https://go.microsoft.com/fwlink/?linkid=830387
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Main",
+            "request": "launch",
+            "vmArgs": "--module-path //usr//java//javafx-sdk-11.0.2//lib --add-modules=javafx.controls,javafx.fxml",
+            "mainClass": "ui.Main",
+            "projectName": "people-DB_a04e361d"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Main",
+            "request": "launch",
+            "vmArgs": "--module-path //usr//java//javafx-sdk-11.0.2//lib --add-modules=javafx.controls,javafx.fxml",
+            "mainClass": "ui.Main",
+            "projectName": "pruebaaa_e7c4a1f0"
+        },
         {
             "type": "java",
             "name": "Debug (Launch) - Current File",
@@ -12,25 +28,11 @@
         },
         {
             "type": "java",
-            "name": "Debug (Launch)-Main<people-DB>",
+            "name": "Debug (Launch)-App<pruebaaa_e7c4a1f0>",
             "request": "launch",
-            "mainClass": "model.data_structures_trie.Main",
-            "projectName": "people-DB"
-        },
-        {
-            "type": "java",
-            "name": "Debug (Launch)-Main<people-DB>(1)",
-            "request": "launch",
-            "mainClass": "ui.Main",
-            "projectName": "people-DB"
-        },
-        {
-            "type": "java",
-            "name": "Debug (Launch)-Main2<people-DB>",
-            "request": "launch",
-            "vmArgs": "--module-path C:\\javafx-sdk-11.0.2\\lib --add-modules=javafx.controls,javafx.fxml",
-            "mainClass": "ui.Main2",
-            "projectName": "people-DB"
+            "vmArgs": "--module-path //usr//java//javafx-sdk-11.0.2//lib --add-modules=javafx.controls,javafx.fxml",
+            "mainClass": "App",
+            "projectName": "pruebaaa_e7c4a1f0"
         }
     ]
 }
