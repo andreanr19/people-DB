@@ -28,7 +28,7 @@ import model.Person;
 public class PeopleController {
 
 	@FXML
-    private DatePicker birthDateTF;
+	private DatePicker birthDateTF;
 	@FXML
 	private AnchorPane generatePeopleAP;
 
@@ -46,7 +46,6 @@ public class PeopleController {
 
 	@FXML
 	private TextField lastNameTF;
-
 
 	@FXML
 	private RadioButton femaleRB;
@@ -116,7 +115,8 @@ public class PeopleController {
 
 	@FXML
 	private Button checkModifyBT;
-
+	@FXML
+	private Button addPersonBT;
 	@FXML
 	private Pane modifyPane;
 
@@ -164,6 +164,7 @@ public class PeopleController {
 
 	public PeopleController(DBDriver db) {
 		this.db = db;
+		g = new Generator();
 	}
 
 	@FXML
@@ -176,10 +177,10 @@ public class PeopleController {
 
 	}
 
+	Generator g;
+
 	@FXML
 	void generateBT(ActionEvent event) {
-
-		Generator g = new Generator();
 
 		try {
 
@@ -205,6 +206,8 @@ public class PeopleController {
 				warning.initStyle(StageStyle.DECORATED);
 				warning.setContentText("Los  datos generados fueron cargados exitosamente.");
 				warning.show();
+
+				db.getDb().preOrden(db.getDb().root);
 
 			} else {
 				g.cleanTemporalFiles();
@@ -251,15 +254,42 @@ public class PeopleController {
 
 	@FXML
 	void checkAddBT(ActionEvent event) {
+		if (db.verifyID(idCreateTF.getText()) == null) {
+
+			nameCreateTF.setDisable(false);
+			lastNameTF.setDisable(false);
+			birthDateTF.setDisable(false);
+			heightCreateTF.setDisable(false);
+			femaleRB.setDisable(false);
+			manRB.setDisable(false);
+			addPersonBT.setDisable(false);
+
+		} else {
+			Alert warning = new Alert(AlertType.WARNING);
+			warning.setTitle("Persona existente");
+			warning.initStyle(StageStyle.DECORATED);
+			warning.setContentText("El ID ingresado ya se encuentra registrado en la base de datos, intente con ID.");
+			warning.show();
+		}
 
 	}
 
 	@FXML
 	void addPersonBT(ActionEvent event) {
 
-		db.addPerson(new Person(idCreateTF.getText(), nameCreateTF.getText(), lastNameTF.getText(),
-				(LocalDate.now().getYear() - Integer.parseInt(lastNameTF.getText().split("/")[2])) + "",
-				femaleRB.isSelected() ? 'm' : 'f', Double.parseDouble(heightCreateTF.getText())));
+		try {
+			db.addPerson(new Person(idCreateTF.getText(), nameCreateTF.getText(), lastNameTF.getText(),
+					(LocalDate.now().getYear() - birthDateTF.getValue().getYear()) + "",
+					femaleRB.isSelected() ? 'm' : 'f', Double.parseDouble(heightCreateTF.getText())));
+
+			Alert warning = new Alert(AlertType.CONFIRMATION);
+			warning.setTitle("Persona registrada");
+			warning.initStyle(StageStyle.DECORATED);
+			warning.setContentText("La persona con ID " + idCreateTF.getText() + " fue registrado exitosamente.");
+			warning.show();
+
+		} catch (Exception e) {
+		}
 
 	}
 

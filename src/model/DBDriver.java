@@ -90,6 +90,14 @@ public class DBDriver {
 
     }
 
+    public Person verifyID(String id) {
+        if (db.searchNode2(id) == null) {
+            return null;
+        }
+
+        return db.searchNode2(id);
+    }
+
     public DBDriver() {
 
         db = new AVLTree<String, Person>();

@@ -14,17 +14,24 @@
         },
         {
             "type": "java",
+            "name": "CodeLens (Launch) - App",
+            "request": "launch",
+            "mainClass": "App",
+            "projectName": "people-DB_a04e361d"
+        },
+        {
+            "type": "java",
             "name": "Debug (Launch) - Current File",
             "request": "launch",
             "mainClass": "${file}"
         },
         {
             "type": "java",
-            "name": "Debug (Launch)-Main<people-DB_a04e361d>",
+            "name": "Debug (Launch)-Main<probando_dd5d048c>",
             "request": "launch",
             "vmArgs": "--module-path //usr//java//javafx-sdk-11.0.2//lib --add-modules=javafx.controls,javafx.fxml",
             "mainClass": "Main",
-            "projectName": "people-DB_a04e361d"
+            "projectName": "probando_dd5d048c"
         }
     ]
 }
