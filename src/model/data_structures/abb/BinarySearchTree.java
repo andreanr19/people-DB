@@ -357,4 +357,9 @@ public class BinarySearchTree<K extends Comparable<K>,T> implements BinarySearch
 	            System.out.print(n.value + ", ");
 	        }
 	    }
+	    
+	    public T searchNode2(K dato) {
+	    	return root==null ?null : root.search(dato);
+	    }
+	    
 }

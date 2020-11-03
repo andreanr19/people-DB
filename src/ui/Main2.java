@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import model.DBDriver;
 import model.Generator;
+import model.Person;
 
 public class Main2 {
 
@@ -18,6 +19,9 @@ public class Main2 {
 		db.loadGeneratedData();
 		
 		db.addWordtoTheTrieByName();
+		
+		db.addPerson(new Person("1010", "Andrea", "nnn", "nnn", 'f', 9));
+		System.out.println(db.getDb().searchNode2("10109"));
 		System.out.println(db.getAt().predictCompletions("w", 3).toString());
 
 		db.addWordtoTheTrieByLastName();

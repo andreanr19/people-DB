@@ -84,4 +84,12 @@ public class Node<K extends Comparable<K>, T> {
 		return key.compareTo(k);
 	}
 	
+	public T search(K datoBuscado) {
+		if(key.compareTo(datoBuscado)==0)
+			return this.value;
+		else if(key.compareTo(datoBuscado)>0)
+			return (left==null)? null : left.search(datoBuscado);
+		else
+			return (right==null)? null : right.search(datoBuscado);
+	}
 }
