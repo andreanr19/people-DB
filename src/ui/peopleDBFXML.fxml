@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="546.0" prefWidth="743.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="546.0" prefWidth="743.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
   <tabs>
       <Tab text="Generar">
          <content>
@@ -25,7 +25,7 @@
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font></Button>
-                  <Button fx:id="generateMaxBT" layoutX="486.0" layoutY="204.0" mnemonicParsing="false" onAction="#generateMaxBT" text="max" textFill="#000000ae" />
+                  <Button layoutX="486.0" layoutY="204.0" mnemonicParsing="false" onAction="#generateMaxBT" text="max" textFill="#000000ae" />
                   <Label layoutX="39.0" layoutY="105.0" prefHeight="57.0" prefWidth="359.0" text="Ingrese la cantidad de personas que desea generar:" textAlignment="CENTER" wrapText="true" />
                   <Label layoutX="14.0" layoutY="14.0" text="Generacion de datos">
                      <font>
@@ -42,25 +42,29 @@
       <content>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
-                  <Label layoutX="33.0" layoutY="105.0" text="Ingresar la información de la persona que se desea crear:" />
-                  <TextField fx:id="idCreateTF" layoutX="162.0" layoutY="146.0" prefHeight="25.0" prefWidth="311.0" promptText="Ingrese ID." />
-                  <TextField fx:id="nameCreateTF" layoutX="162.0" layoutY="190.0" prefHeight="25.0" prefWidth="311.0" promptText="Ingrese el nombre." />
-                  <Button fx:id="checkAddBT" layoutX="505.0" layoutY="146.0" mnemonicParsing="false" text="Verificar ID." />
-                  <TextField fx:id="lastNameTF" layoutX="162.0" layoutY="233.0" prefHeight="25.0" prefWidth="312.0" promptText="Ingrese el apellido." />
-                  <RadioButton fx:id="femaleRB" layoutX="165.0" layoutY="393.0" mnemonicParsing="false" text="Femenino">
+                  <Label layoutX="33.0" layoutY="92.0" text="Ingresar la información de la persona que se desea crear:" />
+                  <TextField fx:id="idCreateTF" layoutX="160.0" layoutY="134.0" prefHeight="25.0" prefWidth="311.0" promptText="Ingrese ID." />
+                  <TextField fx:id="nameCreateTF" disable="true" layoutX="160.0" layoutY="178.0" prefHeight="26.0" prefWidth="172.0" promptText="Ingrese primer nombre." />
+                  <Button fx:id="checkAddBT" layoutX="486.0" layoutY="134.0" mnemonicParsing="false" onAction="#checkAddBT" text="Verificar ID." />
+                  <TextField fx:id="lastNameTF" disable="true" layoutX="350.0" layoutY="178.0" prefHeight="26.0" prefWidth="168.0" promptText="Ingrese primer apellido." />
+                  <RadioButton fx:id="femaleRB" disable="true" layoutX="164.0" layoutY="356.0" mnemonicParsing="false" text="Femenino">
                      <toggleGroup>
                         <ToggleGroup fx:id="genderSel" />
                      </toggleGroup></RadioButton>
-                  <Label layoutX="162.0" layoutY="362.0" text="Género de la persona" />
-                  <RadioButton fx:id="manRB" layoutX="392.0" layoutY="399.0" mnemonicParsing="false" text="Masculino" toggleGroup="$genderSel" />
-                  <TextField fx:id="heightCreateTF" layoutX="163.0" layoutY="320.0" prefHeight="25.0" prefWidth="313.0" promptText="Ingrese la estatura de la persona" />
-                  <Button fx:id="addPersonBT" layoutX="294.0" layoutY="433.0" mnemonicParsing="false" text="Agregar a la persona" />
+                  <Label disable="true" layoutX="159.0" layoutY="330.0" text="Género de la persona:" />
+                  <RadioButton fx:id="manRB" disable="true" layoutX="342.0" layoutY="356.0" mnemonicParsing="false" text="Masculino" toggleGroup="$genderSel" />
+                  <TextField fx:id="heightCreateTF" layoutX="160.0" layoutY="274.0" prefHeight="25.0" prefWidth="313.0" promptText="Ingrese la estatura (cms)" />
                   <Label layoutX="22.0" layoutY="14.0" text="Nueva persona">
                      <font>
                         <Font name="System Bold" size="42.0" />
                      </font>
                   </Label>
-                  <DatePicker fx:id="birthDateTF" layoutX="374.0" layoutY="284.0" />
+                  <DatePicker fx:id="birthDateTF" disable="true" layoutX="159.0" layoutY="219.0" prefHeight="26.0" prefWidth="314.0" promptText="Seleccione la fecha de nacimiento" />
+                  <Button fx:id="addPersonBT" layoutX="333.0" layoutY="424.0" mnemonicParsing="false" onAction="#addPersonBT" text="Agregar">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Button>
                </children></AnchorPane>
       </content>
     </Tab>

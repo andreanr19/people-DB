@@ -11,6 +11,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
@@ -26,6 +27,8 @@ import model.Person;
 
 public class PeopleController {
 
+	@FXML
+    private DatePicker birthDateTF;
 	@FXML
 	private AnchorPane generatePeopleAP;
 
@@ -44,8 +47,6 @@ public class PeopleController {
 	@FXML
 	private TextField lastNameTF;
 
-	@FXML
-	private TextField birthDateTF;
 
 	@FXML
 	private RadioButton femaleRB;
