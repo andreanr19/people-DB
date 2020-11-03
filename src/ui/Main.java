@@ -5,13 +5,17 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import model.DBDriver;
 
 public class Main extends Application {
 
 	private PeopleController pc;
-
+	
+	private DBDriver db;
 	public Main() {
-		pc = new PeopleController();
+		db= new DBDriver();
+		pc = new PeopleController(db);
+ 
 	}
 
 	public static void main(String[] args) {

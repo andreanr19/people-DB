@@ -6,13 +6,18 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.stage.StageStyle;
+import model.DBDriver;
+import model.Generator;
 
 public class PeopleController {
 
@@ -149,6 +154,12 @@ public class PeopleController {
 
 	}
 
+	private DBDriver db;
+
+	public PeopleController(DBDriver db) {
+		this.db = db;
+	}
+
 	@FXML
 	void changeLastNameBT(ActionEvent event) {
 
@@ -157,6 +168,33 @@ public class PeopleController {
 	@FXML
 	void changeNameBT(ActionEvent event) {
 
+	}
+
+	@FXML
+	void generateBT(ActionEvent event) {
+
+		Generator g = new Generator();
+		try {
+			g.generateData(Integer.parseInt(amountGeneratorTF.getText()));
+			Alert warning = new Alert(AlertType.CONFIRMATION);
+			warning.setTitle("CARGA EXITOSA DE DATOS");
+			warning.setContentText("La cantidad "+ amountGeneratorTF.getText() + " de datos aleatorios se generaron exitosamente.");
+			warning.initStyle(StageStyle.DECORATED);
+			warning.showAndWait();
+		}catch(NumberFormatException e) {
+			Alert warning = new Alert(AlertType.ERROR);
+			warning.setTitle("ERROR DE FORMATO");
+			warning.initStyle(StageStyle.DECORATED);
+			warning.setContentText("Ingresó caracteres no numéricos en el campo de texto");
+			warning.show();
+		}catch(IOException i) {
+			Alert warning = new Alert(AlertType.ERROR);
+			warning.setTitle("ARCHIVOS NO ENCONTRADOS");
+			warning.initStyle(StageStyle.DECORATED);
+			warning.setContentText(i.getMessage());
+			i.printStackTrace();
+			warning.showAndWait();
+		}
 	}
 
 	@FXML
