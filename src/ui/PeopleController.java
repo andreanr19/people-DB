@@ -1,6 +1,8 @@
 package ui;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.util.Optional;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -8,16 +10,19 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.StageStyle;
 import model.DBDriver;
 import model.Generator;
+import model.Person;
 
 public class PeopleController {
 
@@ -174,27 +179,57 @@ public class PeopleController {
 	void generateBT(ActionEvent event) {
 
 		Generator g = new Generator();
+
 		try {
+
 			g.generateData(Integer.parseInt(amountGeneratorTF.getText()));
-			Alert warning = new Alert(AlertType.CONFIRMATION);
-			warning.setTitle("CARGA EXITOSA DE DATOS");
-			warning.setContentText("La cantidad "+ amountGeneratorTF.getText() + " de datos aleatorios se generaron exitosamente.");
-			warning.initStyle(StageStyle.DECORATED);
-			warning.showAndWait();
-		}catch(NumberFormatException e) {
+			Alert alert = new Alert(AlertType.CONFIRMATION);
+			alert.setTitle("Data generada.");
+			alert.setHeaderText("Generacion de datos finalizada");
+			alert.setContentText(
+					"Se generaron aleatoriamente " + g.count + " personas\n¿Desea cargar a la base de datos?:");
+
+			ButtonType buttonTypeOne = new ButtonType("Confirmar");
+			ButtonType buttonTypeCancel = new ButtonType("Cancelar", ButtonData.CANCEL_CLOSE);
+
+			alert.getButtonTypes().setAll(buttonTypeOne, buttonTypeCancel);
+
+			Optional<ButtonType> result = alert.showAndWait();
+			if (result.get() == buttonTypeOne) {
+				// ... user chose "One"
+				db.loadGeneratedData();
+
+				Alert warning = new Alert(AlertType.CONFIRMATION);
+				warning.setTitle("Data cargada");
+				warning.initStyle(StageStyle.DECORATED);
+				warning.setContentText("Los  datos generados fueron cargados exitosamente.");
+				warning.show();
+
+			} else {
+				g.cleanTemporalFiles();
+			}
+
+		} catch (
+
+		NumberFormatException e) {
+
 			Alert warning = new Alert(AlertType.ERROR);
 			warning.setTitle("ERROR DE FORMATO");
 			warning.initStyle(StageStyle.DECORATED);
 			warning.setContentText("Ingresó caracteres no numéricos en el campo de texto");
 			warning.show();
-		}catch(IOException i) {
+
+		} catch (IOException i) {
+
 			Alert warning = new Alert(AlertType.ERROR);
 			warning.setTitle("ARCHIVOS NO ENCONTRADOS");
 			warning.initStyle(StageStyle.DECORATED);
 			warning.setContentText(i.getMessage());
 			i.printStackTrace();
 			warning.showAndWait();
+
 		}
+
 	}
 
 	@FXML
@@ -204,6 +239,27 @@ public class PeopleController {
 		Parent nameFXML = fxmlLoader.load();
 		modifyPane.getChildren().clear();
 		modifyPane.getChildren().add(nameFXML);
+	}
+
+	@FXML
+	void generateMaxBT(ActionEvent event) {
+
+		amountGeneratorTF.setText(Generator.MAX_CAPACITY + "");
+
+	}
+
+	@FXML
+	void checkAddBT(ActionEvent event) {
+
+	}
+
+	@FXML
+	void addPersonBT(ActionEvent event) {
+
+		db.addPerson(new Person(idCreateTF.getText(), nameCreateTF.getText(), lastNameTF.getText(),
+				(LocalDate.now().getYear() - Integer.parseInt(lastNameTF.getText().split("/")[2])) + "",
+				femaleRB.isSelected() ? 'm' : 'f', Double.parseDouble(heightCreateTF.getText())));
+
 	}
 
 	@FXML

@@ -106,4 +106,9 @@ public class Generator {
         brLNames.close();
     }
 
+    public void cleanTemporalFiles() throws IOException {
+        PrintWriter pw = new PrintWriter(new FileWriter(PATHTOWRITE));
+        pw.close();
+    }
+
 }

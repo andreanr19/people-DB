@@ -14,25 +14,9 @@
         },
         {
             "type": "java",
-            "name": "CodeLens (Launch) - Main",
-            "request": "launch",
-            "vmArgs": "--module-path //usr//java//javafx-sdk-11.0.2//lib --add-modules=javafx.controls,javafx.fxml",
-            "mainClass": "ui.Main",
-            "projectName": "pruebaaa_e7c4a1f0"
-        },
-        {
-            "type": "java",
             "name": "Debug (Launch) - Current File",
             "request": "launch",
             "mainClass": "${file}"
-        },
-        {
-            "type": "java",
-            "name": "Debug (Launch)-App<pruebaaa_e7c4a1f0>",
-            "request": "launch",
-            "vmArgs": "--module-path //usr//java//javafx-sdk-11.0.2//lib --add-modules=javafx.controls,javafx.fxml",
-            "mainClass": "App",
-            "projectName": "pruebaaa_e7c4a1f0"
         }
     ]
 }
