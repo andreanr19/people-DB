@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="546.0" prefWidth="743.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+  <tabs>
+      <Tab text="Generar">
+         <content>
+            <AnchorPane fx:id="generatePeopleAP" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <TextField fx:id="amountGeneratorTF" layoutX="211.0" layoutY="202.0" prefHeight="30.0" prefWidth="267.0" promptText="Cantidad personas a generar" />
+                  <Button fx:id="generateBT" layoutX="333.0" layoutY="263.0" mnemonicParsing="false" onAction="#generateBT" text="Generar">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font></Button>
+                  <Button layoutX="486.0" layoutY="204.0" mnemonicParsing="false" onAction="#generateMaxBT" text="max" textFill="#000000ae" />
+                  <Label layoutX="39.0" layoutY="105.0" prefHeight="57.0" prefWidth="359.0" text="Ingrese la cantidad de personas que desea generar:" textAlignment="CENTER" wrapText="true" />
+                  <Label layoutX="14.0" layoutY="14.0" text="Generacion de datos">
+                     <font>
+                        <Font name="System Bold" size="42.0" />
+                     </font>
+                  </Label>
+                  <ProgressBar fx:id="progressBar" layoutX="172.0" layoutY="402.0" prefHeight="18.0" prefWidth="399.0" progress="0.0" />
+                  <Label layoutX="252.0" layoutY="370.0" text="Progreso de generación de los datos" />
+               </children>
+            </AnchorPane>
+         </content>
+      </Tab>
+    <Tab text="Agregar">
+      <content>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <Label layoutX="33.0" layoutY="92.0" text="Ingresar la información de la persona que se desea crear:" />
+                  <TextField fx:id="idCreateTF" layoutX="160.0" layoutY="134.0" prefHeight="25.0" prefWidth="311.0" promptText="Ingrese ID." />
+                  <TextField fx:id="nameCreateTF" disable="true" layoutX="160.0" layoutY="178.0" prefHeight="26.0" prefWidth="172.0" promptText="Ingrese primer nombre." />
+                  <Button fx:id="checkAddBT" layoutX="486.0" layoutY="134.0" mnemonicParsing="false" onAction="#checkAddBT" text="Verificar ID." />
+                  <TextField fx:id="lastNameTF" disable="true" layoutX="350.0" layoutY="178.0" prefHeight="26.0" prefWidth="168.0" promptText="Ingrese primer apellido." />
+                  <RadioButton fx:id="femaleRB" disable="true" layoutX="164.0" layoutY="356.0" mnemonicParsing="false" text="Femenino">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="genderSel" />
+                     </toggleGroup></RadioButton>
+                  <Label layoutX="159.0" layoutY="330.0" text="Género de la persona:" />
+                  <RadioButton fx:id="manRB" disable="true" layoutX="342.0" layoutY="356.0" mnemonicParsing="false" text="Masculino" toggleGroup="$genderSel" />
+                  <TextField fx:id="heightCreateTF" layoutX="160.0" layoutY="274.0" prefHeight="25.0" prefWidth="313.0" promptText="Ingrese la estatura (cms)" />
+                  <Label layoutX="22.0" layoutY="14.0" text="Nueva persona">
+                     <font>
+                        <Font name="System Bold" size="42.0" />
+                     </font>
+                  </Label>
+                  <DatePicker fx:id="birthDateTF" disable="true" layoutX="159.0" layoutY="219.0" prefHeight="26.0" prefWidth="314.0" promptText="Seleccione la fecha de nacimiento" />
+                  <Button fx:id="addPersonBT" disable="true" layoutX="333.0" layoutY="424.0" mnemonicParsing="false" onAction="#addPersonBT" text="Agregar">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Button>
+               </children></AnchorPane>
+      </content>
+    </Tab>
+    <Tab text="Remover">
+      <content>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <TextField fx:id="idRemoveTF" layoutX="57.0" layoutY="49.0" prefHeight="25.0" prefWidth="291.0" promptText="Ingrese el id de la persona" />
+                  <Label layoutX="163.0" layoutY="14.0" text="Ingrese la información de la persona que desea eliminar" />
+                  <Button fx:id="searchRemoveBT" layoutX="399.0" layoutY="49.0" mnemonicParsing="false" text="Buscar" />
+                  <Separator layoutY="119.0" prefHeight="0.0" prefWidth="600.0" />
+                  <Label layoutX="29.0" layoutY="158.0" text="Nombre" />
+                  <Label layoutX="29.0" layoutY="198.0" text="Apellido" />
+                  <Label layoutX="30.0" layoutY="238.0" text="Estatura" />
+                  <Label layoutX="29.0" layoutY="279.0" text="Género" />
+                  <Label layoutX="32.0" layoutY="320.0" text="Fecha nacimiento" />
+                  <TextField fx:id="nameRemoveTF" editable="false" layoutX="125.0" layoutY="154.0" prefHeight="25.0" prefWidth="291.0" />
+                  <TextField fx:id="lastNRemoveTF" editable="false" layoutX="125.0" layoutY="194.0" prefHeight="25.0" prefWidth="291.0" />
+                  <TextField fx:id="heightRemoveTF" editable="false" layoutX="125.0" layoutY="234.0" prefHeight="25.0" prefWidth="291.0" />
+                  <TextField fx:id="genderRemoveTF" editable="false" layoutX="125.0" layoutY="275.0" prefHeight="25.0" prefWidth="291.0" />
+                  <TextField fx:id="birthDateRemoveTF" editable="false" layoutX="142.0" layoutY="316.0" prefHeight="25.0" prefWidth="291.0" />
+                  <Label layoutX="188.0" layoutY="128.0" text="Datos de la persona que se desea eliminar" />
+                  <Button fx:id="removePersonBT" layoutX="451.0" layoutY="220.0" mnemonicParsing="false" text="Remover persona" />
+               </children></AnchorPane>
+      </content>
+    </Tab>
+      <Tab text="Buscar">
+         <content>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <Label layoutX="184.0" layoutY="21.0" text="Ingrese la información de la persona que desea buscar" />
+                  <TextField fx:id="idSearchTF" layoutX="80.0" layoutY="61.0" prefHeight="25.0" prefWidth="299.0" promptText="Ingrese el id de la persona" />
+                  <Button fx:id="searchBT" layoutX="421.0" layoutY="61.0" mnemonicParsing="false" text="Buscar" />
+                  <Separator layoutX="-16.0" layoutY="110.0" prefHeight="0.0" prefWidth="619.0" />
+                  <Label layoutX="207.0" layoutY="130.0" text="Información de la persona buscada" />
+                  <TextField fx:id="nameSearchTF" editable="false" layoutX="129.0" layoutY="166.0" prefHeight="25.0" prefWidth="359.0" />
+                  <TextField fx:id="lastNSearchTF" editable="false" layoutX="130.0" layoutY="208.0" prefHeight="25.0" prefWidth="355.0" />
+                  <TextField fx:id="heightSearchTF" editable="false" layoutX="131.0" layoutY="248.0" prefHeight="25.0" prefWidth="354.0" />
+                  <TextField fx:id="genderSearchTF" editable="false" layoutX="132.0" layoutY="293.0" prefHeight="25.0" prefWidth="354.0" />
+                  <Label layoutX="41.0" layoutY="170.0" text="Nombre" />
+                  <Label layoutX="43.0" layoutY="212.0" text="Apellido" />
+                  <Label layoutX="43.0" layoutY="252.0" text="Estatura" />
+                  <Label layoutX="43.0" layoutY="297.0" text="Género" />
+               </children></AnchorPane>
+         </content>
+      </Tab>
+      <Tab text="Modificar">
+         <content>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <Label layoutX="186.0" layoutY="14.0" text="Seleccione que dato desea modificar de la persona" />
+                  <RadioButton fx:id="nameModifyRB" layoutX="26.0" layoutY="52.0" mnemonicParsing="false" onAction="#modifyNamePane" text="Nombre">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="modifyOptions" />
+                     </toggleGroup>
+                  </RadioButton>
+                  <RadioButton fx:id="lastNModifyRB" layoutX="130.0" layoutY="52.0" mnemonicParsing="false" onAction="#modifyLastNamePane" text="Apellido" toggleGroup="$modifyOptions" />
+                  <RadioButton fx:id="idModifyRB" layoutX="252.0" layoutY="52.0" mnemonicParsing="false" onAction="#modifyIdPane" text="Código" toggleGroup="$modifyOptions" />
+                  <RadioButton fx:id="heightModifyRB" layoutX="366.0" layoutY="52.0" mnemonicParsing="false" onAction="#modifyHeightPane" text="Estatura" toggleGroup="$modifyOptions" />
+                  <RadioButton fx:id="genderModifyRB" layoutX="496.0" layoutY="52.0" mnemonicParsing="false" onAction="#modifyGenderPane" text="Género" toggleGroup="$modifyOptions" />
+                  <Separator layoutY="87.0" prefHeight="0.0" prefWidth="600.0" />
+                  <Label layoutX="172.0" layoutY="95.0" text="Ingrese el id de la persona que desea modificar" />
+                  <TextField fx:id="idModifyTF" layoutX="86.0" layoutY="126.0" prefHeight="25.0" prefWidth="273.0" />
+                  <Button fx:id="checkModifyBT" layoutX="437.0" layoutY="124.0" mnemonicParsing="false" text="Verificar" />
+                  <Separator layoutY="171.0" prefHeight="0.0" prefWidth="600.0" />
+                  <Pane fx:id="modifyPane" layoutY="174.0" prefHeight="197.0" prefWidth="600.0" />
+               </children></AnchorPane>
+         </content>
+      </Tab>
+  </tabs>
+</TabPane>
