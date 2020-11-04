@@ -12,7 +12,9 @@ public class Main extends Application {
 	private PeopleController pc;
 	
 	private DBDriver db;
+	
 	public Main() {
+
 		db= new DBDriver();
 		pc = new PeopleController(db);
  

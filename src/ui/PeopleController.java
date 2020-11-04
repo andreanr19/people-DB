@@ -201,6 +201,8 @@ public class PeopleController {
 				// ... user chose "One"
 				db.loadGeneratedData();
 
+				g.cleanTemporalFiles();
+
 				Alert warning = new Alert(AlertType.CONFIRMATION);
 				warning.setTitle("Data cargada");
 				warning.initStyle(StageStyle.DECORATED);

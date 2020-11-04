@@ -21,14 +21,7 @@ public class Main2 {
 		db.addWordtoTheTrieByName();
 		
 		db.addPerson(new Person("1010", "Andrea", "nnn", "nnn", 'f', 9));
-		System.out.println(db.getDb().searchNode2("10109"));
-		System.out.println(db.getAt().predictCompletions("w", 3).toString());
-
-		db.addWordtoTheTrieByLastName();
-		System.out.println(db.getAt().predictCompletions("m", 4).toString());
-		
-		db.addWordtoTheTrieByNameAndLastName();
-		System.out.println(db.getAt().predictCompletions("w", 4).toString());
+	
 
 	}
 
