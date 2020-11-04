@@ -1,9 +1,10 @@
 package model.data_structures.avl;
 
+import model.Person;
 import model.data_structures.abb.BinarySearchTree;
 import model.data_structures.abb.Node;
 
-public class AVLTree<K extends Comparable<K>, T> extends BinarySearchTree<K, T> {
+public class AVLTree<K extends Comparable<K>, T extends Person> extends BinarySearchTree<K, T> {
 
 	public int height() {
 		return height(root);

@@ -1,6 +1,8 @@
 package model.data_structures.abb;
 
-public class Node<K extends Comparable<K>, T> {
+import model.Person;
+
+public class Node<K extends Comparable<K>, T extends Person> {
 	protected K key;
 	protected T value;
 	protected int height;
