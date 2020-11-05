@@ -12,7 +12,7 @@ public class Main2 {
 
 		Generator g = new Generator();
 
-		g.generateData(10);
+		//g.generateData(10);
 
 		DBDriver db = new DBDriver();
 

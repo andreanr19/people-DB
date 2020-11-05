@@ -1,9 +1,12 @@
 package ui;
 
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.time.LocalDate;
 import java.util.Optional;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -24,11 +27,13 @@ import javafx.stage.StageStyle;
 import model.DBDriver;
 import model.Generator;
 import model.Person;
+import thread.ProgressBarThread;
 
 public class PeopleController {
 
 	@FXML
 	private DatePicker birthDateTF;
+
 	@FXML
 	private AnchorPane generatePeopleAP;
 
@@ -115,8 +120,10 @@ public class PeopleController {
 
 	@FXML
 	private Button checkModifyBT;
+
 	@FXML
 	private Button addPersonBT;
+
 	@FXML
 	private Pane modifyPane;
 
@@ -150,6 +157,15 @@ public class PeopleController {
 	@FXML
 	private RadioButton maleNewRB;
 
+	private DBDriver db;
+	private Generator g;
+	private ProgressBarThread pbThread;
+
+	public PeopleController(DBDriver db) {
+		this.db = db;
+		g = new Generator();
+	}
+
 	@FXML
 	void changeGenderBT(ActionEvent event) {
 
@@ -158,13 +174,6 @@ public class PeopleController {
 	@FXML
 	void changeHeightBT(ActionEvent event) {
 
-	}
-
-	private DBDriver db;
-
-	public PeopleController(DBDriver db) {
-		this.db = db;
-		g = new Generator();
 	}
 
 	@FXML
@@ -177,19 +186,49 @@ public class PeopleController {
 
 	}
 
-	Generator g;
 
 	@FXML
 	void generateBT(ActionEvent event) {
 
 		try {
+			int q = Integer.parseInt(amountGeneratorTF.getText());
+			pbThread = new ProgressBarThread(this, g, q);
+			pbThread.run();
+//			new Thread() {
+//				@Override
+//				public void run() {
+//					try {
+//						int count = 0;
+//						g.setQ(q);
+//						g.loadDataToGenerate(q);
+//						PrintWriter pw = new PrintWriter(new FileWriter(g.PATHTOWRITE));
+//						pw.write("id,name,lastname,gender,age\n");
+//						pbThread.start();
+//						for (int i = 0; i < q && count < g.MAX_CAPACITY; i++) {
+//
+//							pw.write(g.getRandomPerson());
+//							count++;
+//							g.setCount(count);
+//							double x = count / q;
+//
+//						}
+//
+//						pw.close();
+//					} catch (Exception e) {
+//						e.printStackTrace();
+//					}
+//				}
+//			}.start();
 
-			g.generateData(Integer.parseInt(amountGeneratorTF.getText()));
+
+			//g.generateData(Integer.parseInt(amountGeneratorTF.getText()));
+			//pbThread = new ProgressBarThread(this);
+			//pbThread.start();
 			Alert alert = new Alert(AlertType.CONFIRMATION);
 			alert.setTitle("Data generada.");
 			alert.setHeaderText("Generacion de datos finalizada");
 			alert.setContentText(
-					"Se generaron aleatoriamente " + g.count + " personas\n¿Desea cargar a la base de datos?:");
+					"Se generaron aleatoriamente " + g.count + " personas\n¿Desea cargar a la base de datos?");
 
 			ButtonType buttonTypeOne = new ButtonType("Confirmar");
 			ButtonType buttonTypeCancel = new ButtonType("Cancelar", ButtonData.CANCEL_CLOSE);
@@ -329,6 +368,17 @@ public class PeopleController {
 		Parent genderFXML = fxmlLoader.load();
 		modifyPane.getChildren().clear();
 		modifyPane.getChildren().add(genderFXML);
+	}
+
+	public void progressBar(){
+		Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
+				progressBar.setProgress(((double)g.count/g.q));
+			}
+		});
+		//q is the amount user ask
+
 	}
 
 }

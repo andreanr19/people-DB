@@ -12,7 +12,7 @@ import java.util.Random;
 
 public class Generator {
 
-    private final static String PATHTOREADNAMES = "data/babynames-clean.csv",
+    public final static String PATHTOREADNAMES = "data/babynames-clean.csv",
             PATHTOREADLASTNAMES = "data/Names_2010Census.csv", PATHTOREADCOUNTRIES = "data/country_p.csv";
     public final static String PATHTOWRITE = "data/temporal.csv";
 
@@ -34,11 +34,11 @@ public class Generator {
         countID = 0000000000;
     }
 
-    public void generateData(int q) throws IOException {
+    public void generateData() throws IOException {
 
         this.q = q;
 
-        loadDataToGenerate();
+        //loadDataToGenerate();
 
         PrintWriter pw = new PrintWriter(new FileWriter(PATHTOWRITE));
 
@@ -55,7 +55,7 @@ public class Generator {
         pw.close();
     }
 
-    private String getRandomPerson() {
+    public String getRandomPerson() {
         int iName = (int) (Math.random() * (double) names.size()),
                 iLName = (int) (Math.random() * (double) lastNames.size());
         String tID = countID + "";
@@ -91,13 +91,13 @@ public class Generator {
         return tID + "," + nameAndGender.split(";")[0] + "," + lastName + "," + gender + "," + age + "," + "0" + "\n";
     }
 
-    private void loadDataToGenerate() throws IOException {
+    public void loadDataToGenerate(int x) throws IOException {
 
         BufferedReader brNames = new BufferedReader(new FileReader(new File(PATHTOREADNAMES)));
         BufferedReader brLNames = new BufferedReader(new FileReader(new File(PATHTOREADLASTNAMES)));
         brLNames.readLine();
 
-        for (int i = 0; i < q; i++) {
+        for (int i = 0; i < x; i++) {
             names.add(brNames.readLine());
             lastNames.add(brLNames.readLine().split(",")[0]);
         }
@@ -110,5 +110,14 @@ public class Generator {
         PrintWriter pw = new PrintWriter(new FileWriter(PATHTOWRITE));
         pw.close();
     }
+
+    public void setQ(int q){
+        this.q = q;
+    }
+
+    public void setCount(int count){
+        this.count = count;
+    }
+
 
 }
