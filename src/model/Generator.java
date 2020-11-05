@@ -34,27 +34,6 @@ public class Generator {
         countID = 0000000000;
     }
 
-    public void generateData() throws IOException {
-
-        this.q = q;
-
-        //loadDataToGenerate();
-
-        PrintWriter pw = new PrintWriter(new FileWriter(PATHTOWRITE));
-
-        pw.write("id,name,lastname,gender,age\n");
-
-        for (int i = 0; i < q && count < MAX_CAPACITY; i++) {
-
-            pw.write(getRandomPerson());
-
-            count++;
-
-        }
-
-        pw.close();
-    }
-
     public String getRandomPerson() {
         int iName = (int) (Math.random() * (double) names.size()),
                 iLName = (int) (Math.random() * (double) lastNames.size());
@@ -91,13 +70,13 @@ public class Generator {
         return tID + "," + nameAndGender.split(";")[0] + "," + lastName + "," + gender + "," + age + "," + "0" + "\n";
     }
 
-    public void loadDataToGenerate(int x) throws IOException {
+    public void loadDataToGenerate() throws IOException {
 
         BufferedReader brNames = new BufferedReader(new FileReader(new File(PATHTOREADNAMES)));
         BufferedReader brLNames = new BufferedReader(new FileReader(new File(PATHTOREADLASTNAMES)));
         brLNames.readLine();
 
-        for (int i = 0; i < x; i++) {
+        for (int i = 0; i < q; i++) {
             names.add(brNames.readLine());
             lastNames.add(brLNames.readLine().split(",")[0]);
         }

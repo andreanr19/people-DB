@@ -189,41 +189,12 @@ public class PeopleController {
 
 	@FXML
 	void generateBT(ActionEvent event) {
+		progressBar.setProgress(0);
 
 		try {
 			int q = Integer.parseInt(amountGeneratorTF.getText());
 			pbThread = new ProgressBarThread(this, g, q);
 			pbThread.run();
-//			new Thread() {
-//				@Override
-//				public void run() {
-//					try {
-//						int count = 0;
-//						g.setQ(q);
-//						g.loadDataToGenerate(q);
-//						PrintWriter pw = new PrintWriter(new FileWriter(g.PATHTOWRITE));
-//						pw.write("id,name,lastname,gender,age\n");
-//						pbThread.start();
-//						for (int i = 0; i < q && count < g.MAX_CAPACITY; i++) {
-//
-//							pw.write(g.getRandomPerson());
-//							count++;
-//							g.setCount(count);
-//							double x = count / q;
-//
-//						}
-//
-//						pw.close();
-//					} catch (Exception e) {
-//						e.printStackTrace();
-//					}
-//				}
-//			}.start();
-
-
-			//g.generateData(Integer.parseInt(amountGeneratorTF.getText()));
-			//pbThread = new ProgressBarThread(this);
-			//pbThread.start();
 			Alert alert = new Alert(AlertType.CONFIRMATION);
 			alert.setTitle("Data generada.");
 			alert.setHeaderText("Generacion de datos finalizada");
