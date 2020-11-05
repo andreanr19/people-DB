@@ -10,14 +10,14 @@ import model.DBDriver;
 public class Main extends Application {
 
 	private PeopleController pc;
-	
+
 	private DBDriver db;
-	
+
 	public Main() {
 
-		db= new DBDriver();
+		db = new DBDriver();
 		pc = new PeopleController(db);
- 
+
 	}
 
 	public static void main(String[] args) {
@@ -34,6 +34,7 @@ public class Main extends Application {
 		primaryStage.setScene(scene);
 		primaryStage.setTitle("People Database");
 		primaryStage.show();
+
 	}
 
 }
