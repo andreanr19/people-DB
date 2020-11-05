@@ -34,7 +34,28 @@ public class Generator {
         countID = 0000000000;
     }
 
-    public String getRandomPerson() {
+    public void generateData(int q) throws IOException {
+
+        this.q = q;
+
+        loadDataToGenerate(6000);
+
+        PrintWriter pw = new PrintWriter(new FileWriter(PATHTOWRITE));
+
+        pw.write("id,name,lastname,gender,age\n");
+
+        for (int i = 0; i < q && count < MAX_CAPACITY; i++) {
+
+            pw.write(getRandomPerson());
+
+            count++;
+
+        }
+
+        pw.close();
+    }
+
+    public String getRandomPerson() throws IOException {
         int iName = (int) (Math.random() * (double) names.size()),
                 iLName = (int) (Math.random() * (double) lastNames.size());
         String tID = countID + "";
@@ -44,11 +65,18 @@ public class Generator {
 
         }
 
+        if(names.size()<1){
+            loadDataToGenerate(6780);
+        }
         String nameAndGender = names.remove(iName).toUpperCase();
+        if(lastNames.size()<1){
+            loadDataToGenerate(6780);
+        }
         String lastName = lastNames.remove(iLName);
         String gender = (nameAndGender.split(";")[1].equals("BOY")) ? "m" : "f";
 
         int age;
+        
         Random rN = new Random();
 
         if ((double) count / (double) q < AGE_RANGE_0_TO_14) {
@@ -70,13 +98,13 @@ public class Generator {
         return tID + "," + nameAndGender.split(";")[0] + "," + lastName + "," + gender + "," + age + "," + "0" + "\n";
     }
 
-    public void loadDataToGenerate() throws IOException {
+    public void loadDataToGenerate(int x) throws IOException {
 
         BufferedReader brNames = new BufferedReader(new FileReader(new File(PATHTOREADNAMES)));
         BufferedReader brLNames = new BufferedReader(new FileReader(new File(PATHTOREADLASTNAMES)));
         brLNames.readLine();
 
-        for (int i = 0; i < q; i++) {
+        for (int i = 0; i < x; i++) {
             names.add(brNames.readLine());
             lastNames.add(brLNames.readLine().split(",")[0]);
         }
@@ -90,13 +118,12 @@ public class Generator {
         pw.close();
     }
 
-    public void setQ(int q){
+    public void setQ(int q) {
         this.q = q;
     }
 
-    public void setCount(int count){
+    public void setCount(int count) {
         this.count = count;
     }
-
 
 }

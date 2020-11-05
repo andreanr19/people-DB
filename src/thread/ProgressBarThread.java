@@ -26,7 +26,7 @@ public class ProgressBarThread extends Thread{
             try{
             int count = 0;
             g.setQ(q);
-            g.loadDataToGenerate();
+            g.loadDataToGenerate(6000);
             PrintWriter pw = new PrintWriter(new FileWriter(g.PATHTOWRITE));
             pw.write("id,name,lastname,gender,age\n");
 
