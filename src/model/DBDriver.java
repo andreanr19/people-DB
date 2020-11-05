@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.List;
 
 import model.data_structures.avl.AVLTree;
 import model.data_structures_trie.AutocompleteTrie;
@@ -127,6 +128,10 @@ public class DBDriver {
         return db.searchNode2(id);
     }
 
+    public void loadDataSearchingByName(String name) {
+    	List<Person> p = db.searchByName(name);
+    	
+    }
     public DBDriver() {
 
         db = new AVLTree<String, Person>();

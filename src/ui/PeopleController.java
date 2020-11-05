@@ -6,6 +6,8 @@ import java.io.PrintWriter;
 import java.time.LocalDate;
 import java.util.Optional;
 
+import org.controlsfx.control.textfield.TextFields;
+
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -60,6 +62,7 @@ public class PeopleController {
 
 	@FXML
 	private RadioButton manRB;
+	
 
 	@FXML
 	private TextField heightCreateTF;
@@ -186,6 +189,13 @@ public class PeopleController {
 
 	}
 
+	@FXML
+	void searchByName(ActionEvent event) {
+		
+		System.out.println(db.getByName().predictCompletions(idSearchTF.getText(), 100).toString());
+		TextFields.bindAutoCompletion(idSearchTF, db.getByName().predictCompletions(idSearchTF.getText(), 100));
+		
+	}
 
 	@FXML
 	void generateBT(ActionEvent event) {
@@ -219,7 +229,7 @@ public class PeopleController {
 				warning.setContentText("Los  datos generados fueron cargados exitosamente.");
 				warning.show();
 
-				db.getDb().preOrden(db.getDb().root);
+//				db.getDb().preOrden(db.getDb().root);
 
 			} else {
 				g.cleanTemporalFiles();

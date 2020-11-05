@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="546.0" prefWidth="743.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="546.0" prefWidth="743.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
   <tabs>
       <Tab text="Generar">
          <content>
@@ -95,19 +95,28 @@
          <content>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
-                  <Label layoutX="184.0" layoutY="21.0" text="Ingrese la información de la persona que desea buscar" />
-                  <TextField fx:id="idSearchTF" layoutX="80.0" layoutY="61.0" prefHeight="25.0" prefWidth="299.0" promptText="Ingrese el id de la persona" />
-                  <Button fx:id="searchBT" layoutX="421.0" layoutY="61.0" mnemonicParsing="false" text="Buscar" />
-                  <Separator layoutX="-16.0" layoutY="110.0" prefHeight="0.0" prefWidth="619.0" />
-                  <Label layoutX="207.0" layoutY="130.0" text="Información de la persona buscada" />
-                  <TextField fx:id="nameSearchTF" editable="false" layoutX="129.0" layoutY="166.0" prefHeight="25.0" prefWidth="359.0" />
-                  <TextField fx:id="lastNSearchTF" editable="false" layoutX="130.0" layoutY="208.0" prefHeight="25.0" prefWidth="355.0" />
-                  <TextField fx:id="heightSearchTF" editable="false" layoutX="131.0" layoutY="248.0" prefHeight="25.0" prefWidth="354.0" />
-                  <TextField fx:id="genderSearchTF" editable="false" layoutX="132.0" layoutY="293.0" prefHeight="25.0" prefWidth="354.0" />
-                  <Label layoutX="41.0" layoutY="170.0" text="Nombre" />
-                  <Label layoutX="43.0" layoutY="212.0" text="Apellido" />
-                  <Label layoutX="43.0" layoutY="252.0" text="Estatura" />
-                  <Label layoutX="43.0" layoutY="297.0" text="Género" />
+                  <Label layoutX="175.0" layoutY="142.0" text="Ingrese la información de la persona que desea buscar" />
+                  <TextField fx:id="idSearchTF" layoutX="158.0" layoutY="178.0" prefHeight="25.0" prefWidth="299.0" promptText="Ingrese el id de la persona" />
+                  <Button fx:id="searchBT" layoutX="478.0" layoutY="178.0" mnemonicParsing="false" text="Buscar" />
+                  <Separator layoutX="-2.0" layoutY="215.0" prefHeight="0.0" prefWidth="619.0" />
+                  <Label layoutX="236.0" layoutY="235.0" text="Información de la persona buscada" />
+                  <TextField fx:id="nameSearchTF" editable="false" layoutX="158.0" layoutY="271.0" prefHeight="25.0" prefWidth="359.0" />
+                  <TextField fx:id="lastNSearchTF" editable="false" layoutX="159.0" layoutY="313.0" prefHeight="25.0" prefWidth="355.0" />
+                  <TextField fx:id="heightSearchTF" editable="false" layoutX="160.0" layoutY="353.0" prefHeight="25.0" prefWidth="354.0" />
+                  <TextField fx:id="genderSearchTF" editable="false" layoutX="161.0" layoutY="398.0" prefHeight="25.0" prefWidth="354.0" />
+                  <Label layoutX="70.0" layoutY="275.0" text="Nombre" />
+                  <Label layoutX="72.0" layoutY="317.0" text="Apellido" />
+                  <Label layoutX="72.0" layoutY="357.0" text="Estatura" />
+                  <Label layoutX="72.0" layoutY="402.0" text="Género" />
+                  <RadioButton layoutX="93.0" layoutY="75.0" mnemonicParsing="false" onAction="#searchByName" text="Nombre">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="itemsSearch" />
+                     </toggleGroup>
+                  </RadioButton>
+                  <Label layoutX="190.0" layoutY="34.0" text="Seleccione el criterio de busqueda que desea utilizar" />
+                  <RadioButton layoutX="190.0" layoutY="75.0" mnemonicParsing="false" text="Apellido" toggleGroup="$itemsSearch" />
+                  <RadioButton layoutX="292.0" layoutY="75.0" mnemonicParsing="false" text="Nombre y apellido" toggleGroup="$itemsSearch" />
+                  <RadioButton layoutX="432.0" layoutY="75.0" mnemonicParsing="false" text="Id" toggleGroup="$itemsSearch" />
                </children></AnchorPane>
          </content>
       </Tab>
