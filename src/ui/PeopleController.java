@@ -23,6 +23,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonBar.ButtonData;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.StageStyle;
@@ -62,7 +63,6 @@ public class PeopleController {
 
 	@FXML
 	private RadioButton manRB;
-	
 
 	@FXML
 	private TextField heightCreateTF;
@@ -189,13 +189,38 @@ public class PeopleController {
 
 	}
 
+	
 	@FXML
-	void searchByName(ActionEvent event) {
-		
-		System.out.println(db.getByName().predictCompletions(idSearchTF.getText(), 100).toString());
-		TextFields.bindAutoCompletion(idSearchTF, db.getByName().predictCompletions(idSearchTF.getText(), 100));
-		
+	private RadioButton autocompleteByName;
+	@FXML
+	private RadioButton autocompleteByLastName;
+	@FXML
+	private RadioButton autocompleteByNameAndLN;
+	@FXML
+	private RadioButton autocompleteByID;
+
+	
+
+	@FXML
+	void txtKeyReleased(KeyEvent event) {
+		String search = idSearchTF.getText().trim();
+		if (!search.equals("")) {
+			if (autocompleteByName.isSelected()) {
+				System.out.println(search);
+				TextFields.bindAutoCompletion(idSearchTF, db.getByName().predictCompletions(search, 100));
+			}else if(autocompleteByNameAndLN.isSelected()) {
+				TextFields.bindAutoCompletion(idSearchTF, db.getByNameAndLastName().predictCompletions(search, 100));
+			}else if(autocompleteByID.isSelected()) {
+				TextFields.bindAutoCompletion(idSearchTF, db.getByID().predictCompletions(search, 100));
+
+			}else if(autocompleteByLastName.isSelected()) {
+				TextFields.bindAutoCompletion(idSearchTF, db.getByLastName().predictCompletions(search, 100));
+
+			}
+		}
 	}
+
+
 
 	@FXML
 	void generateBT(ActionEvent event) {
@@ -351,14 +376,14 @@ public class PeopleController {
 		modifyPane.getChildren().add(genderFXML);
 	}
 
-	public void progressBar(){
+	public void progressBar() {
 		Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
-				progressBar.setProgress(((double)g.count/g.q));
+				progressBar.setProgress(((double) g.count / g.q));
 			}
 		});
-		//q is the amount user ask
+		// q is the amount user ask
 
 	}
 

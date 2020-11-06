@@ -106,7 +106,7 @@ public class DBDriver {
 
             String[] t = temporal.split(",");
 
-            byNameAndLastName.addWord(t[1] + t[2]);
+            byNameAndLastName.addWord(t[1] + " "+ t[2]);
             temporal = brNameAndLastName.readLine();
         }
         brNameAndLastName.close();

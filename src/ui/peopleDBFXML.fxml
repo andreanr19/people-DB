@@ -96,7 +96,7 @@
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
                   <Label layoutX="175.0" layoutY="142.0" text="Ingrese la información de la persona que desea buscar" />
-                  <TextField fx:id="idSearchTF" layoutX="158.0" layoutY="178.0" prefHeight="25.0" prefWidth="299.0" promptText="Ingrese el id de la persona" />
+                  <TextField fx:id="idSearchTF" layoutX="158.0" layoutY="178.0" onKeyReleased="#txtKeyReleased" prefHeight="25.0" prefWidth="299.0" promptText="Ingrese el id de la persona" />
                   <Button fx:id="searchBT" layoutX="478.0" layoutY="178.0" mnemonicParsing="false" text="Buscar" />
                   <Separator layoutX="-2.0" layoutY="215.0" prefHeight="0.0" prefWidth="619.0" />
                   <Label layoutX="236.0" layoutY="235.0" text="Información de la persona buscada" />
@@ -108,15 +108,15 @@
                   <Label layoutX="72.0" layoutY="317.0" text="Apellido" />
                   <Label layoutX="72.0" layoutY="357.0" text="Estatura" />
                   <Label layoutX="72.0" layoutY="402.0" text="Género" />
-                  <RadioButton layoutX="93.0" layoutY="75.0" mnemonicParsing="false" onAction="#searchByName" text="Nombre">
+                  <RadioButton fx:id="autocompleteByName" layoutX="93.0" layoutY="75.0" mnemonicParsing="false" text="Nombre">
                      <toggleGroup>
                         <ToggleGroup fx:id="itemsSearch" />
                      </toggleGroup>
                   </RadioButton>
                   <Label layoutX="190.0" layoutY="34.0" text="Seleccione el criterio de busqueda que desea utilizar" />
-                  <RadioButton layoutX="190.0" layoutY="75.0" mnemonicParsing="false" text="Apellido" toggleGroup="$itemsSearch" />
-                  <RadioButton layoutX="292.0" layoutY="75.0" mnemonicParsing="false" text="Nombre y apellido" toggleGroup="$itemsSearch" />
-                  <RadioButton layoutX="432.0" layoutY="75.0" mnemonicParsing="false" text="Id" toggleGroup="$itemsSearch" />
+                  <RadioButton fx:id="autocompleteByLastName" layoutX="190.0" layoutY="75.0" mnemonicParsing="false" text="Apellido" toggleGroup="$itemsSearch" />
+                  <RadioButton fx:id="autocompleteByNameAndLN" layoutX="292.0" layoutY="75.0" mnemonicParsing="false" text="Nombre y apellido" toggleGroup="$itemsSearch" />
+                  <RadioButton fx:id="autocompleteByID" layoutX="432.0" layoutY="75.0" mnemonicParsing="false" text="Id" toggleGroup="$itemsSearch" />
                </children></AnchorPane>
          </content>
       </Tab>
