@@ -294,8 +294,8 @@ public class BinarySearchTree<K extends Comparable<K>, T extends Person> impleme
 			theListByName.add(current.getValue());
 		}
 
-		searchByName(current.getLeft(), theListByName, name);
-		searchByName(current.getRight(), theListByName, name);
+		searchByLastName(current.getLeft(), theListByName, name);
+		searchByLastName(current.getRight(), theListByName, name);
 
 		return theListByName;
 	}
@@ -321,8 +321,8 @@ public class BinarySearchTree<K extends Comparable<K>, T extends Person> impleme
 			theListByName.add(current.getValue());
 		}
 
-		searchByName(current.getLeft(), theListByName, name);
-		searchByName(current.getRight(), theListByName, name);
+		searchByNameAndLastName(current.getLeft(), theListByName, name);
+		searchByNameAndLastName(current.getRight(), theListByName, name);
 
 		return theListByName;
 	}

@@ -78,17 +78,11 @@ public class PeopleController implements Initializable {
 	@FXML
 	private TextField heightCreateTF;
 
-
-
 	@FXML
 	private TextField idSearchTF;
 
 	@FXML
 	private TextField found;
-
-
-
-
 
 	@FXML
 	private TextField idModifyTF;
@@ -107,23 +101,16 @@ public class PeopleController implements Initializable {
 	@FXML
 	private Pane modifyPane;
 
-	
-
 	@FXML
 	private TextField newNameTF;
 
-	
-
 	@FXML
 	private TextField newLastNameTF;
-
 
 	@FXML
 	private TextField newHeightTF;
 	@FXML
 	private TextField nationalityCreateTF;
-
-
 
 	@FXML
 	private RadioButton femaleNewRB;
@@ -182,8 +169,6 @@ public class PeopleController implements Initializable {
 		g = new Generator();
 		foundList = new ArrayList<Person>();
 	}
-
-	
 
 	@FXML
 	private RadioButton autocompleteByName;
@@ -299,8 +284,6 @@ public class PeopleController implements Initializable {
 
 	}
 
-
-
 	@FXML
 	void generateMaxBT(ActionEvent event) {
 
@@ -329,17 +312,18 @@ public class PeopleController implements Initializable {
 		}
 
 	}
+
 	@FXML
 	void removePersonBtn(ActionEvent event) {
 		try {
 			db.getDb().delete(idTF.getText());
 			for (int i = 0; i < foundList.size(); i++) {
-				if(foundList.get(i).getId().equalsIgnoreCase(idTF.getText())) {
+				if (foundList.get(i).getId().equalsIgnoreCase(idTF.getText())) {
 					foundList.remove(i);
-					i= foundList.size();
-					found.setText((Integer.parseInt(found.getText())-1)+"");
+					i = foundList.size();
+					found.setText((Integer.parseInt(found.getText()) - 1) + "");
 				}
-				
+
 			}
 			Alert warning = new Alert(AlertType.CONFIRMATION);
 			warning.setTitle("Persona registrada");
@@ -347,7 +331,7 @@ public class PeopleController implements Initializable {
 			warning.setContentText("La persona con ID " + idCreateTF.getText() + " fue eliminado exitosamente.");
 			warning.show();
 			initialize(null, null);
-		}catch(Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
@@ -361,17 +345,15 @@ public class PeopleController implements Initializable {
 		edadTF.setEditable(true);
 		alturaTF.setEditable(true);
 		nacionalidadTF.setEditable(true);
-		
-		
+
 	}
+
 	@FXML
 	void confirmChangesBtn(ActionEvent event) {
 		db.getDb().delete(idTF.getText());
 		try {
-			db.addPerson(new Person(idTF.getText(), nombreTF.getText(), apellidoTF.getText(),
-					edadTF.getText(),
-					generoTF.getText().charAt(0), Double.parseDouble(alturaTF.getText()),
-					nacionalidadTF.getText()));
+			db.addPerson(new Person(idTF.getText(), nombreTF.getText(), apellidoTF.getText(), edadTF.getText(),
+					generoTF.getText().charAt(0), Double.parseDouble(alturaTF.getText()), nacionalidadTF.getText()));
 
 			Alert warning = new Alert(AlertType.CONFIRMATION);
 			warning.setTitle("Persona registrada");
@@ -379,10 +361,11 @@ public class PeopleController implements Initializable {
 			warning.setContentText("La persona con ID " + idCreateTF.getText() + " fue modificado exitosamente.");
 			warning.show();
 			initialize(null, null);
-		}catch(Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
+
 	@FXML
 	void addPersonBT(ActionEvent event) {
 
@@ -402,9 +385,6 @@ public class PeopleController implements Initializable {
 		}
 
 	}
-
-
-
 
 	public void progressBar() {
 		Platform.runLater(new Runnable() {
