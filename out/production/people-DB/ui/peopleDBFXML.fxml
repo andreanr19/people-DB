@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="689.0" prefWidth="1000.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="689.0" prefWidth="1000.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
   <tabs>
       <Tab text="Generar">
          <content>
@@ -112,7 +112,7 @@
                                                 <TableColumn fx:id="lastNameCL" prefWidth="97.0" text="Apellido" />
                                                 <TableColumn fx:id="ageCL" prefWidth="95.0" text="Edad" />
                                                 <TableColumn fx:id="genderCL" prefWidth="60.0" text="Genero" />
-                                                <TableColumn fx:id="heightCL" prefWidth="83.33334350585938" text="Altura" />
+                                                <TableColumn fx:id="heightCL" prefWidth="83.33334350585938" text="Altura (cm)" />
                                                 <TableColumn fx:id="nationalityCL" prefWidth="125.0" text="Nacionalidad" />
                                              </columns>
                                           </TableView>
@@ -164,6 +164,16 @@
                   </Pane>
                </children></AnchorPane>
          </content>
+      </Tab>
+      <Tab text="Archivo">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <Button layoutX="292.0" layoutY="267.0" mnemonicParsing="false" onAction="#saveCurrentState" prefHeight="27.0" prefWidth="299.0" text="Guardar estado actual" />
+                  <Button layoutX="293.0" layoutY="315.0" mnemonicParsing="false" onAction="#loadPreviousState" prefHeight="27.0" prefWidth="296.0" text="Cargar estado anterior" />
+               </children>
+            </AnchorPane>
+        </content>
       </Tab>
   </tabs>
 </TabPane>

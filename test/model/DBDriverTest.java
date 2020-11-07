@@ -56,18 +56,80 @@ class DBDriverTest {
 	}
 
 	@Test
+	void searchByNameTest2() {
+		setup3();
+
+		try {
+			db.loadGeneratedData();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		assertNotNull(db.searchByName("German"));
+	}
+
+	@Test
 	void searchByIdTest() {
 		setup3();
 
 		assertEquals(null, db.searchByName("129217132"));
+
+	}
+
+	@Test
+	void searchIdByTest2() {
+		setup3();
+		try {
+			db.loadGeneratedData();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 		assertNotNull(db.searchByID("0000000001"));
 	}
 
-//	@Test
-//	void searchByIdTest() {
-//		setup3();
-//
-//		assertEquals(null, db.searchByName("129217132"));
-//	}
+	@Test
+	void searchByNameLastNameTest() {
+		setup3();
+
+		assertEquals(null, db.searchByNameAndLastName("Pepito Perez"));
+
+	}
+
+	@Test
+	void searchByNameLastNameTest2() {
+		setup3();
+
+		try {
+			db.loadGeneratedData();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		Person one = new Person("0", "Pepito", "Perez", "7/11/2020", 'm', 50.0, "Colombia");
+		db.addPerson(one);
+		assertNotNull(db.searchByNameAndLastName("Pepito Perez"));
+
+	}
+
+	@Test
+	void addPersonTest() {
+		setup3();
+
+		try {
+			db.loadGeneratedData();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		Person one = new Person("0", "Pepito", "Perez", "7/11/2020", 'm', 50.0, "Colombia");
+		db.addPerson(one);
+		assertNotNull(db.searchByNameAndLastName("Pepito Perez"));
+		assertEquals(1001, db.getDb().size());
+	}
 
 }
