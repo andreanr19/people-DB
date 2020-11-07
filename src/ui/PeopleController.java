@@ -184,7 +184,7 @@ public class PeopleController implements Initializable {
 		String search = idSearchTF.getText().trim();
 		if (!search.equals("")) {
 			if (autocompleteByName.isSelected()) {
-				System.out.println(search);
+				
 				TextFields.bindAutoCompletion(idSearchTF, db.getByName().predictCompletions(search, 100));
 			} else if (autocompleteByNameAndLN.isSelected()) {
 				TextFields.bindAutoCompletion(idSearchTF, db.getByNameAndLastName().predictCompletions(search, 100));
