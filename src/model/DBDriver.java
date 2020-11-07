@@ -2,8 +2,13 @@ package model;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 import java.util.List;
 
 import model.data_structures.avl.AVLTree;
@@ -14,6 +19,8 @@ public class DBDriver {
 	private AVLTree<String, Person> db;
 
 	private AutocompleteTrie byID, byName, byLastName, byNameAndLastName;
+	public static String PEOPLE_FILE_NAME = "data/people.dat";
+
 
 	public void loadGeneratedData() throws IOException {
 
@@ -199,5 +206,24 @@ public class DBDriver {
 
 	public List<Person> searchByNameAndLastName(String nameandlastname) {
 		return db.searchByNameAndLastName(nameandlastname);
+	}
+	public void saveState() throws IOException {
+
+		ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(PEOPLE_FILE_NAME));
+
+		oos.writeObject(db);
+		oos.close();
+
+	}
+
+	@SuppressWarnings("unchecked")
+	public void loadState() throws IOException, ClassNotFoundException {
+
+		ObjectInputStream ois =new ObjectInputStream(new FileInputStream(PEOPLE_FILE_NAME));
+		
+		db = (AVLTree<String, Person>) ois.readObject();
+		
+		ois.close();
+		
 	}
 }
