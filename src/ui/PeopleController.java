@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+import javafx.scene.control.*;
 import org.controlsfx.control.textfield.TextFields;
 
 import javafx.application.Platform;
@@ -19,16 +20,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.ProgressBar;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -160,6 +151,9 @@ public class PeopleController implements Initializable {
 	@FXML
 	private TextField alturaTF;
 
+	@FXML
+	private Label timeLabel;
+
 	private DBDriver db;
 	private Generator g;
 	private ProgressBarThread pbThread;
@@ -225,12 +219,18 @@ public class PeopleController implements Initializable {
 
 	@FXML
 	void generateBT(ActionEvent event) {
+
+		long actualT = System.currentTimeMillis();
 		progressBar.setProgress(0);
 
 		try {
 			int q = Integer.parseInt(amountGeneratorTF.getText());
 			pbThread = new ProgressBarThread(this, g, q);
 			pbThread.run();
+			long terminado = System.currentTimeMillis();
+			long total = terminado - actualT;
+
+			timeLabel.setText(total + "");
 			Alert alert = new Alert(AlertType.CONFIRMATION);
 			alert.setTitle("Data generada.");
 			alert.setHeaderText("Generacion de datos finalizada");

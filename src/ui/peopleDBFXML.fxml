@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="689.0" prefWidth="1000.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="689.0" prefWidth="1000.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
   <tabs>
       <Tab text="Generar">
          <content>
@@ -37,6 +37,12 @@
                   </Label>
                   <ProgressBar fx:id="progressBar" layoutX="172.0" layoutY="402.0" prefHeight="18.0" prefWidth="399.0" progress="0.0" />
                   <Label layoutX="252.0" layoutY="370.0" text="Progreso de generación de los datos" />
+                  <Label layoutX="183.0" layoutY="436.0" text="Tiempo demorado en milisegundos:" />
+                  <Label fx:id="timeLabel" layoutX="398.0" layoutY="436.0">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
                </children>
             </AnchorPane>
          </content>
