@@ -83,12 +83,16 @@ public class PeopleController implements Initializable {
 
 	@FXML
 	private Button addPersonBT;
+
 	@FXML
 	private Button editButton;
+
 	@FXML
 	private Button confirmButton;
+
 	@FXML
 	private Button removeButton;
+
 	@FXML
 	private Pane modifyPane;
 
