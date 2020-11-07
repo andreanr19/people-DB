@@ -12,11 +12,24 @@ I will divide the explanation of the solution into several problems.
 
 -Data generation progress bar: To make the progress bar that would be updated as the data was generated, we did it with its own thread that will perform the respective operations and constantly update the progress of the bar
 
+## Technical specifications
+
+We use structures such as AVL Trees, TIER, binary search tree, ArrayList and flat files for the solution. Each of these was selected thanks to certain criteria where we chose the best option that would allow us to create an efficient solution
+
 ## About how to download
+
+To download the project, clone it or download the .Zip, in the src folder you will find the model, the interface and the threads used to reach the solution, to run the program enter the Main class in your IDE of preference. The data folder contains all the information so that the generation of the database is possible, do not modify or delete that folder for the correct operation of the application
 
 ## Documentation
 
-Project engineering method
+Project engineering method, can be found [here](docs/MetodoIngenieria)
+
+Functional requeriments and test design, can be found 
+
+Class diagrams, can be found here 
+
+## Project preview
+
 
 
 ## Dependency Management
