@@ -1,11 +1,12 @@
 package model.data_structures.abb;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import model.Person;
 
-public class BinarySearchTree<K extends Comparable<K>, T extends Person> implements BinarySearchTreeInterface<K, T> {
+public class BinarySearchTree<K extends Comparable<K>, T extends Person> implements BinarySearchTreeInterface<K, T>, Serializable {
 
 	// --------------------------------------------------------------------------------
 
