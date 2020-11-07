@@ -1,15 +1,23 @@
 package ui;
 
 import java.io.IOException;
+import java.net.URL;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
+import java.util.ResourceBundle;
 
 import org.controlsfx.control.textfield.TextFields;
 
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -17,10 +25,13 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonBar.ButtonData;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
@@ -30,7 +41,7 @@ import model.Generator;
 import model.Person;
 import thread.ProgressBarThread;
 
-public class PeopleController {
+public class PeopleController implements Initializable {
 
 	@FXML
 	private Pane paneResults;
@@ -117,7 +128,12 @@ public class PeopleController {
 
 	@FXML
 	private Button addPersonBT;
-
+	@FXML
+	private Button editButton;
+	@FXML
+	private Button confirmButton;
+	@FXML
+	private Button removeButton;
 	@FXML
 	private Pane modifyPane;
 
@@ -138,6 +154,8 @@ public class PeopleController {
 
 	@FXML
 	private TextField newHeightTF;
+	@FXML
+	private TextField nationalityCreateTF;
 
 	@FXML
 	private Pane modifyGenderFXML;
@@ -151,6 +169,43 @@ public class PeopleController {
 	@FXML
 	private RadioButton maleNewRB;
 
+	@FXML
+	private TableView<Person> foundPeople;
+	@FXML
+	private TableColumn<Person, String> idCL;
+	@FXML
+	private TableColumn<Person, String> nameCL;
+	@FXML
+	private TableColumn<Person, String> lastNameCL;
+	@FXML
+	private TableColumn<Person, String> ageCL;
+	@FXML
+	private TableColumn<Person, String> genderCL;
+	@FXML
+	private TableColumn<Person, String> heightCL;
+	@FXML
+	private TableColumn<Person, String> nationalityCL;
+
+	private ObservableList<Person> people;
+
+	@FXML
+	private TextField nombreTF;
+
+	@FXML
+	private TextField apellidoTF;
+
+	@FXML
+	private TextField edadTF;
+
+	@FXML
+	private TextField generoTF;
+
+	@FXML
+	private TextField nacionalidadTF;
+
+	@FXML
+	private TextField alturaTF;
+
 	private DBDriver db;
 	private Generator g;
 	private ProgressBarThread pbThread;
@@ -158,6 +213,7 @@ public class PeopleController {
 	public PeopleController(DBDriver db) {
 		this.db = db;
 		g = new Generator();
+		foundList = new ArrayList<Person>();
 	}
 
 	@FXML
@@ -207,24 +263,30 @@ public class PeopleController {
 			}
 		}
 	}
-	
+
 	@FXML
 	void searchBtn(ActionEvent event) {
 		String search = idSearchTF.getText();
-		if(autocompleteByName.isSelected()) {
-			found.setText(db.searchByName(search).size()+"");
-		}else if(autocompleteByNameAndLN.isSelected()) {
-			found.setText(db.searchByNameAndLastName(search).size()+"");
-		}else if(autocompleteByID.isSelected()) {
-			if(db.searchByID(search)!=null) {
+		if (autocompleteByName.isSelected()) {
+			found.setText(db.searchByName(search).size() + "");
+			foundList = db.searchByName(search);
+		} else if (autocompleteByNameAndLN.isSelected()) {
+			found.setText(db.searchByNameAndLastName(search).size() + "");
+			foundList = db.searchByNameAndLastName(search);
+		} else if (autocompleteByID.isSelected()) {
+			if (db.searchByID(search) != null) {
 				found.setText("1");
-			}else {
+				foundList.add(db.searchByID(search));
+			} else {
 				found.setText("0");
 			}
-		}else if(autocompleteByLastName.isSelected()) {
-			found.setText(db.searchByNameAndLastName(search).size()+"");
+		} else if (autocompleteByLastName.isSelected()) {
+			found.setText(db.searchByLastName(search).size() + "");
+			foundList = db.searchByLastName(search);
 		}
 	}
+
+	List<Person> foundList;
 
 	@FXML
 	void generateBT(ActionEvent event) {
@@ -258,7 +320,7 @@ public class PeopleController {
 				warning.setContentText("Los  datos generados fueron cargados exitosamente.");
 				warning.show();
 
-//				db.getDb().preOrden(db.getDb().root);
+				// db.getDb().preOrden(db.getDb().root);
 
 			} else {
 				g.cleanTemporalFiles();
@@ -331,7 +393,8 @@ public class PeopleController {
 		try {
 			db.addPerson(new Person(idCreateTF.getText(), nameCreateTF.getText(), lastNameTF.getText(),
 					(LocalDate.now().getYear() - birthDateTF.getValue().getYear()) + "",
-					femaleRB.isSelected() ? 'm' : 'f', Double.parseDouble(heightCreateTF.getText())));
+					femaleRB.isSelected() ? 'm' : 'f', Double.parseDouble(heightCreateTF.getText()),
+					nationalityCreateTF.getText()));
 
 			Alert warning = new Alert(AlertType.CONFIRMATION);
 			warning.setTitle("Persona registrada");
@@ -389,6 +452,87 @@ public class PeopleController {
 		});
 		// q is the amount user ask
 
+	}
+
+	private void inicializePeopleTable() {
+		idCL.setCellValueFactory(new PropertyValueFactory<Person, String>("id"));
+		nameCL.setCellValueFactory(new PropertyValueFactory<Person, String>("name"));
+		lastNameCL.setCellValueFactory(new PropertyValueFactory<Person, String>("lastName"));
+		ageCL.setCellValueFactory(new PropertyValueFactory<Person, String>("birthdate"));
+		genderCL.setCellValueFactory(new PropertyValueFactory<Person, String>("gender"));
+		heightCL.setCellValueFactory(new PropertyValueFactory<Person, String>("height"));
+		nationalityCL.setCellValueFactory(new PropertyValueFactory<Person, String>("nationality"));
+
+		people = FXCollections.observableArrayList();
+		foundPeople.setItems(people);
+	}
+
+	@Override
+	public void initialize(URL url, ResourceBundle rb) {
+
+		// Inicializamos la tabla
+		this.inicializePeopleTable();
+
+		// Ponemos estos dos botones para que no se puedan seleccionar
+		editButton.setDisable(true);
+		removeButton.setDisable(true);
+
+		// Seleccionar las tuplas de la tabla de las personas
+		final ObservableList<Person> selectedPeopleTable = foundPeople.getSelectionModel().getSelectedItems();
+		selectedPeopleTable.addListener(selectorPeopleTable);
+
+		// Inicializamos la tabla con algunos datos aleatorios
+
+		for (int i = 0; i < foundList.size(); i++) {
+
+			people.add(foundList.get(i));
+		}
+
+	}
+
+	private final ListChangeListener<Person> selectorPeopleTable = new ListChangeListener<Person>() {
+		@Override
+		public void onChanged(ListChangeListener.Change<? extends Person> c) {
+			putSelectedPerson();
+		}
+	};
+
+	/**
+	 * Método para poner en los textFields la tupla que selccionemos
+	 */
+
+	int posicionPersonaEnTabla;
+
+	private void putSelectedPerson() {
+		final Person persona = getTablaPersonasSeleccionada();
+		posicionPersonaEnTabla = people.indexOf(persona);
+
+		if (persona != null) {
+
+			// Pongo los textFields con los datos correspondientes
+			nombreTF.setText(persona.getName());
+			apellidoTF.setText(persona.getLastName());
+			edadTF.setText(persona.getBirthdate());
+			generoTF.setText(persona.getGender() + "");
+			alturaTF.setText(persona.getHeight() + "");
+			nacionalidadTF.setText(persona.getNationality());
+
+			// Pongo los botones en su estado correspondiente
+			editButton.setDisable(false);
+			removeButton.setDisable(false);
+
+		}
+	}
+
+	public Person getTablaPersonasSeleccionada() {
+		if (foundPeople != null) {
+			List<Person> table = foundPeople.getSelectionModel().getSelectedItems();
+			if (table.size() == 1) {
+				final Person competicionSeleccionada = table.get(0);
+				return competicionSeleccionada;
+			}
+		}
+		return null;
 	}
 
 }

@@ -32,7 +32,7 @@ public class Main2 {
 		
 
 		AVLTree<String, Person> t = new AVLTree<>();
-
+/* 
 		t.put("1", new Person("1", "Camilo", "a", "birthdate", 'm', 12));
 
 		t.put("2", new Person("2", "Camilo", "b", "birthdate", 'm', 12));
@@ -41,7 +41,7 @@ public class Main2 {
 
 		t.put("4", new Person("4", "Camilo", "d", "birthdate", 'm', 12));
 
-		t.put("5", new Person("5", "Camilo", "e", "birthdate", 'm', 12));
+		t.put("5", new Person("5", "Camilo", "e", "birthdate", 'm', 12)); */
 
 		List<Person> theList = t.searchByName("Camilo");
 

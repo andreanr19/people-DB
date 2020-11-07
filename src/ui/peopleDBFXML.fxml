@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="781.0" prefWidth="1200.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="689.0" prefWidth="1000.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
   <tabs>
       <Tab text="Generar">
          <content>
@@ -63,11 +63,12 @@
                      </font>
                   </Label>
                   <DatePicker fx:id="birthDateTF" disable="true" layoutX="159.0" layoutY="219.0" prefHeight="26.0" prefWidth="314.0" promptText="Seleccione la fecha de nacimiento" />
-                  <Button fx:id="addPersonBT" disable="true" layoutX="333.0" layoutY="424.0" mnemonicParsing="false" onAction="#addPersonBT" text="Agregar">
+                  <Button fx:id="addPersonBT" disable="true" layoutX="339.0" layoutY="489.0" mnemonicParsing="false" onAction="#addPersonBT" text="Agregar">
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font>
                   </Button>
+                  <TextField fx:id="nationalityCreateTF" layoutX="165.0" layoutY="402.0" prefHeight="25.0" prefWidth="313.0" promptText="Ingrese la estatura (cms)" />
                </children></AnchorPane>
       </content>
     </Tab>
@@ -102,55 +103,68 @@
                   <TextField fx:id="idSearchTF" layoutX="87.0" layoutY="96.0" onKeyReleased="#txtKeyReleased" prefHeight="25.0" prefWidth="299.0" promptText="Ingrese el id de la persona" />
                   <Button fx:id="searchBT" layoutX="398.0" layoutY="96.0" mnemonicParsing="false" onAction="#searchBtn" text="Buscar" />
                   <Separator layoutY="141.0" prefHeight="2.0" prefWidth="809.0" />
-                  <Label layoutX="589.0" layoutY="44.0" text="Información de la persona buscada" />
                   <RadioButton fx:id="autocompleteByName" layoutX="90.0" layoutY="43.0" mnemonicParsing="false" text="Nombre">
                      <toggleGroup>
                         <ToggleGroup fx:id="itemsSearch" />
                      </toggleGroup>
                   </RadioButton>
-                  <Label layoutX="263.0" layoutY="14.0" text="Seleccione el criterio de busqueda que desea utilizar" />
+                  <Label layoutX="53.0" layoutY="16.0" text="Seleccione el criterio de busqueda que desea utilizar" />
                   <RadioButton fx:id="autocompleteByLastName" layoutX="188.0" layoutY="43.0" mnemonicParsing="false" text="Apellido" toggleGroup="$itemsSearch" />
                   <RadioButton fx:id="autocompleteByNameAndLN" layoutX="292.0" layoutY="43.0" mnemonicParsing="false" text="Nombre y apellido" toggleGroup="$itemsSearch" />
                   <RadioButton fx:id="autocompleteByID" layoutX="443.0" layoutY="43.0" mnemonicParsing="false" text="Id" toggleGroup="$itemsSearch" />
-                  <TextField fx:id="found" editable="false" layoutX="617.0" layoutY="96.0" prefHeight="27.0" prefWidth="67.0" />
-                  <Label layoutX="478.0" layoutY="101.0" text="Número de resultados:" />
-                  <Pane fx:id="paneResults" layoutX="4.0" layoutY="144.0" prefHeight="540.0" prefWidth="802.0">
+                  <TextField fx:id="found" editable="false" layoutX="761.0" layoutY="95.0" prefHeight="27.0" prefWidth="67.0" />
+                  <Label layoutX="602.0" layoutY="99.0" text="Número de resultados:" />
+                  <Pane fx:id="paneResults" layoutX="4.0" layoutY="144.0" prefHeight="512.0" prefWidth="994.0">
                      <children>
-                        <AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="800.0">
+                        <AnchorPane id="AnchorPane">
                            <children>
-                              <SplitPane dividerPositions="0.6616541353383458" focusTraversable="true" prefHeight="500.0" prefWidth="800.0">
+                              <SplitPane dividerPositions="0.6616541353383458" focusTraversable="true" prefHeight="494.0" prefWidth="993.0">
                                  <items>
-                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="499.0" prefWidth="361.9998779296875">
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="536.0" prefWidth="652.0">
                                        <children>
-                                          <TableView fx:id="tablaPersonas" prefHeight="498.0" prefWidth="526.0">
+                                          <TableView fx:id="foundPeople" prefHeight="503.0" prefWidth="657.0">
                                              <columns>
-                                                <TableColumn prefWidth="75.0" text="Column X" />
-                                                <TableColumn fx:id="nombreCL" prefWidth="93.0" text="Nombre" />
-                                                <TableColumn fx:id="apellidoCL" prefWidth="97.0" text="Apellido" />
-                                                <TableColumn fx:id="edadCL" prefWidth="87.0" text="Edad" />
-                                                <TableColumn fx:id="telefonoCL" prefWidth="171.0" text="Telefono" />
+                                                <TableColumn fx:id="idCL" prefWidth="107.0" text="ID" />
+                                                <TableColumn fx:id="nameCL" prefWidth="89.0" text="Nombre" />
+                                                <TableColumn fx:id="lastNameCL" prefWidth="97.0" text="Apellido" />
+                                                <TableColumn fx:id="ageCL" prefWidth="95.0" text="Edad" />
+                                                <TableColumn fx:id="genderCL" prefWidth="60.0" text="Genero" />
+                                                <TableColumn fx:id="heightCL" prefWidth="83.33334350585938" text="Altura" />
+                                                <TableColumn fx:id="nationalityCL" prefWidth="125.0" text="Nacionalidad" />
                                              </columns>
                                           </TableView>
                                        </children>
                                     </AnchorPane>
-                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="498.0" prefWidth="414.0">
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="473.0" prefWidth="331.0">
                                        <children>
-                                          <Label layoutX="14.0" layoutY="21.0" text="Nombre:">
+                                          <Label layoutX="40.0" layoutY="14.0" text="Nombre:">
                                              <font>
                                                 <Font name="System Bold Italic" size="15.0" fx:id="x1" />
                                              </font>
                                           </Label>
-                                          <Label font="$x1" layoutX="14.0" layoutY="231.0" text="Telefono:" />
-                                          <Label font="$x1" layoutX="14.0" layoutY="158.0" text="Edad:" />
-                                          <Label font="$x1" layoutX="14.0" layoutY="90.0" text="Apellidos:" />
-                                          <TextField fx:id="nombreTF" layoutX="14.0" layoutY="45.0" prefHeight="26.0" prefWidth="239.0" />
-                                          <TextField fx:id="apellidoTF" layoutX="13.0" layoutY="114.0" prefHeight="26.0" prefWidth="239.0" />
-                                          <TextField fx:id="edadTF" layoutX="14.0" layoutY="181.0" prefHeight="26.0" prefWidth="239.0" />
-                                          <TextField fx:id="telefonoTF" layoutX="14.0" layoutY="260.0" prefHeight="26.0" prefWidth="239.0" />
-                                          <Button fx:id="aniadirBT" font="$x1" layoutX="18.0" layoutY="316.0" mnemonicParsing="false" onAction="#aniadir" prefHeight="26.0" prefWidth="234.0" text="Añadir" />
-                                          <Button fx:id="modificarBT" font="$x1" layoutX="19.0" layoutY="359.0" mnemonicParsing="false" onAction="#modificar" prefHeight="26.0" prefWidth="234.0" text="Modificar" />
-                                          <Button fx:id="eliminarBT" font="$x1" layoutX="19.0" layoutY="402.0" mnemonicParsing="false" onAction="#eliminar" prefHeight="26.0" prefWidth="234.0" text="Eliminar" />
-                                          <Button fx:id="nuevoBT" font="$x1" layoutX="19.0" layoutY="439.0" mnemonicParsing="false" onAction="#nuevo" prefHeight="45.0" prefWidth="234.0" text="NUEVO !!!" />
+                                          <Label font="$x1" layoutX="56.0" layoutY="171.0" text="Genero" />
+                                          <Label font="$x1" layoutX="49.0" layoutY="119.0" text="Edad:" />
+                                          <Label font="$x1" layoutX="43.0" layoutY="67.0" text="Apellidos:" />
+                                          <TextField fx:id="nombreTF" layoutX="40.0" layoutY="38.0" prefHeight="26.0" prefWidth="239.0" />
+                                          <TextField fx:id="apellidoTF" layoutX="42.0" layoutY="91.0" prefHeight="26.0" prefWidth="239.0" />
+                                          <TextField fx:id="edadTF" layoutX="49.0" layoutY="142.0" prefHeight="26.0" prefWidth="239.0" />
+                                          <TextField fx:id="generoTF" layoutX="56.0" layoutY="200.0" prefHeight="26.0" prefWidth="239.0" />
+                                          <Button fx:id="editButton" font="$x1" layoutX="13.0" layoutY="355.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="138.0" text="Modificar" />
+                                          <Button fx:id="removeButton" font="$x1" layoutX="53.0" layoutY="445.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="234.0" text="Eliminar" />
+                                          <Button fx:id="confirmButton" font="$x1" layoutX="177.0" layoutY="354.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="134.0" text="Confirmar" />
+                                          <Label layoutX="36.0" layoutY="227.0" text="Altura">
+                                             <font>
+                                                <Font name="System Bold Italic" size="15.0" fx:id="x11" />
+                                             </font>
+                                          </Label>
+                                          <TextField fx:id="alturaTF" layoutX="36.0" layoutY="256.0" prefHeight="26.0" prefWidth="239.0" />
+                                          <Label layoutX="40.0" layoutY="284.0" text="Nacionalidad">
+                                             <font>
+                                                <Font name="System Bold Italic" size="15.0" fx:id="x111" />
+                                             </font>
+                                          </Label>
+                                          <TextField fx:id="nacionalidadTF" layoutX="40.0" layoutY="313.0" prefHeight="26.0" prefWidth="239.0" />
+                                          <Separator layoutX="-2.0" layoutY="436.0" prefHeight="1.0" prefWidth="326.0" />
                                        </children>
                                     </AnchorPane>
                                  </items>

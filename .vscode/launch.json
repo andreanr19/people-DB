@@ -6,33 +6,31 @@
     "configurations": [
         {
             "type": "java",
-            "name": "CodeLens (Launch) - Main",
-            "request": "launch",
-            "mainClass": "ui.Main",
-            "vmArgs": "--module-path //usr//java//javafx-sdk-11.0.2//lib --add-modules=javafx.controls,javafx.fxml",
-            "projectName": "people-DB_a04e361d"
-        },
-        {
-            "type": "java",
-            "name": "CodeLens (Launch) - Main",
-            "request": "launch",
-            "mainClass": "Main",
-            "vmArgs": "--module-path //usr//java//javafx-sdk-11.0.2//lib --add-modules=javafx.controls,javafx.fxml",
-            "projectName": "people-DB_a04e361d"
-        },
-        {
-            "type": "java",
             "name": "Debug (Launch) - Current File",
             "request": "launch",
             "mainClass": "${file}"
         },
         {
             "type": "java",
-            "name": "Debug (Launch)-Main<probando_dd5d048c>",
+            "name": "Debug (Launch)-App<people-DB_a04e361d>",
+            "request": "launch",
+            "mainClass": "App",
+            "projectName": "people-DB_a04e361d"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Main<people-DB_a04e361d>",
+            "request": "launch",
+            "mainClass": "Main",
+            "projectName": "people-DB_a04e361d"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Main<people-DB_a04e361d>(1)",
             "request": "launch",
             "vmArgs": "--module-path //usr//java//javafx-sdk-11.0.2//lib --add-modules=javafx.controls,javafx.fxml",
-            "mainClass": "Main",
-            "projectName": "probando_dd5d048c"
+            "mainClass": "ui.Main",
+            "projectName": "people-DB_a04e361d"
         }
     ]
 }

@@ -65,18 +65,18 @@ public class Generator {
 
         }
 
-        if(names.size()<1){
+        if (names.size() < 1) {
             loadDataToGenerate(6780);
         }
         String nameAndGender = names.remove(iName).toUpperCase();
-        if(lastNames.size()<1){
+        if (lastNames.size() < 1) {
             loadDataToGenerate(6780);
         }
         String lastName = lastNames.remove(iLName);
         String gender = (nameAndGender.split(";")[1].equals("BOY")) ? "m" : "f";
 
         int age;
-        
+
         Random rN = new Random();
 
         if ((double) count / (double) q < AGE_RANGE_0_TO_14) {
@@ -95,7 +95,8 @@ public class Generator {
 
         }
         countID++;
-        return tID + "," + nameAndGender.split(";")[0] + "," + lastName + "," + gender + "," + age + "," + "0" + "\n";
+        return tID + "," + nameAndGender.split(";")[0] + "," + lastName + "," + gender + "," + age + "," + "0" + ","
+                + "Colombia" + "\n";
     }
 
     public void loadDataToGenerate(int x) throws IOException {

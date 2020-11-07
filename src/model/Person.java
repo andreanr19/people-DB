@@ -6,18 +6,20 @@ public class Person {
     // estatura,
     // nacionalidad y fotografía
 
-    private String id, name, lastName, birthdate;
+    private String id, name, lastName, birthdate, nationality;
     private char gender;
 
     private double height;
 
-    public Person(String id, String name, String lastName, String birthdate, char gender, double height) {
+    public Person(String id, String name, String lastName, String birthdate, char gender, double height,
+            String nationality) {
         this.id = id;
         this.name = name;
         this.lastName = lastName;
         this.birthdate = birthdate;
         this.gender = gender;
         this.height = height;
+        this.nationality = nationality;
     }
 
     public String getName() {
@@ -62,6 +64,18 @@ public class Person {
 
     public String getId() {
         return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getNationality() {
+        return nationality;
+    }
+
+    public void setNationality(String nationality) {
+        this.nationality = nationality;
     }
 
 }
