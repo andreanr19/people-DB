@@ -6,15 +6,12 @@ import java.util.List;
 
 import model.Person;
 
-public class BinarySearchTree<K extends Comparable<K>, T extends Person> implements BinarySearchTreeInterface<K, T>, Serializable {
-
-	// --------------------------------------------------------------------------------
+public class BinarySearchTree<K extends Comparable<K>, T extends Person>
+		implements BinarySearchTreeInterface<K, T>, Serializable {
 
 	public Node<K, T> root;
 
 	protected int weight;
-
-	// --------------------------------------------------------------------------------
 
 	public BinarySearchTree() {
 
@@ -22,9 +19,6 @@ public class BinarySearchTree<K extends Comparable<K>, T extends Person> impleme
 
 	}
 
-	// --------------------------------------------------------------------------------
-
-	// Adds equal elements to the right, always adds the element
 	public boolean add(K key, T value, int height, int size) {
 		return addBase(key, value, height, size) != null;
 	}
@@ -41,8 +35,6 @@ public class BinarySearchTree<K extends Comparable<K>, T extends Person> impleme
 			return root;
 		}
 	}
-
-	// --------------------------------------------------------------------------------
 
 	private Node<K, T> addRecursive(K key, T value, Node<K, T> currentNode, Node<K, T> newNode) {
 
@@ -90,8 +82,6 @@ public class BinarySearchTree<K extends Comparable<K>, T extends Person> impleme
 		}
 	}
 
-	// --------------------------------------------------------------------------------
-
 	@Override
 	public boolean update(K key, T value) {
 
@@ -112,8 +102,6 @@ public class BinarySearchTree<K extends Comparable<K>, T extends Person> impleme
 
 	}
 
-	// --------------------------------------------------------------------------------
-
 	@Override
 	public boolean remove(K key) {
 		if (root != null) {
@@ -122,8 +110,6 @@ public class BinarySearchTree<K extends Comparable<K>, T extends Person> impleme
 			return false;
 		}
 	}
-
-	// --------------------------------------------------------------------------------
 
 	private boolean removeRecursive(K key, Node<K, T> currentNode, Node<K, T> parent) {
 		if (currentNode != null) {
@@ -190,8 +176,6 @@ public class BinarySearchTree<K extends Comparable<K>, T extends Person> impleme
 		}
 	}
 
-	// --------------------------------------------------------------------------------
-
 	private Node<K, T> getMin(Node<K, T> node) {
 
 		while (node.getLeft() != null) {
@@ -203,8 +187,6 @@ public class BinarySearchTree<K extends Comparable<K>, T extends Person> impleme
 		return node;
 
 	}
-
-	// --------------------------------------------------------------------------------
 
 	@Override
 	public T search(K key) {
@@ -222,8 +204,6 @@ public class BinarySearchTree<K extends Comparable<K>, T extends Person> impleme
 		}
 
 	}
-
-	// --------------------------------------------------------------------------------
 
 	private T searchRecursive(K key, Node<K, T> currentNode) {
 
@@ -363,13 +343,10 @@ public class BinarySearchTree<K extends Comparable<K>, T extends Person> impleme
 		}
 
 	}
-	// --------------------------------------------------------------------------------
 
 	public int getWeight() {
 		return weight;
 	}
-
-	// --------------------------------------------------------------------------------
 
 	public int getHeight() {
 		return getHeight(root);
@@ -393,55 +370,29 @@ public class BinarySearchTree<K extends Comparable<K>, T extends Person> impleme
 		return root == null;
 	}
 
-	// For testing purposes
 	protected Node<K, T> getRoot() {
 		return root;
 	}
 
-	// --------------------------------------------------------------------------------
-
-	public void preOrden(Node<K, T> node) {
-		if (node != null) {
-			System.out.print(node.getKey() + ", ");
-			preOrden(node.getLeft());
-			preOrden(node.getRight());
-		}
-	}
-
-	public void inOrden(Node<K, T> n) {
-		if (n != null) {
-			inOrden(n.left);
-			System.out.print(n.value + ", ");
-			inOrden(n.right);
-		}
-	}
-
-	public void postOrden(Node<K, T> n) {
-		if (n != null) {
-			postOrden(n.left);
-			postOrden(n.right);
-			System.out.print(n.value + ", ");
-		}
-	}
-	
-	public List<Person> returnPeople(Node<K,T> node){
-		List<Person> t= new ArrayList<Person>();
-		if(root==null) 
+	public List<Person> returnPeople(Node<K, T> node) {
+		List<Person> t = new ArrayList<Person>();
+		if (root == null)
 			return t;
-		return returnPeople(root,t);
+		return returnPeople(root, t);
 	}
 
-	private List<Person> returnPeople(Node<K,T> node, List<Person> t){
-		if(node==null) {
+	private List<Person> returnPeople(Node<K, T> node, List<Person> t) {
+		if (node == null) {
 			return t;
-		}else {
+		} else {
 			t.add(node.getValue());
-			returnPeople(node.getLeft(),t);
-			returnPeople(node.getRight(),t);
-			
+			returnPeople(node.getLeft(), t);
+			returnPeople(node.getRight(), t);
+
 		}
 		return t;
 	}
+
 	public T searchNode2(K dato) {
 		return root == null ? null : root.search(dato);
 	}
