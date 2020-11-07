@@ -11,171 +11,190 @@ import model.data_structures_trie.AutocompleteTrie;
 
 public class DBDriver {
 
-    private AVLTree<String, Person> db;
+	private AVLTree<String, Person> db;
 
-    private AutocompleteTrie byID, byName, byLastName, byNameAndLastName;
+	private AutocompleteTrie byID, byName, byLastName, byNameAndLastName;
 
-    public void loadGeneratedData() throws IOException {
+	public void loadGeneratedData() throws IOException {
 
-        BufferedReader brPeople = new BufferedReader(new FileReader(new File(Generator.PATHTOWRITE)));
+		BufferedReader brPeople = new BufferedReader(new FileReader(new File(Generator.PATHTOWRITE)));
 
-        brPeople.readLine();
-        String temporal = brPeople.readLine();
-        while (!(temporal == null)) {
+		brPeople.readLine();
+		String temporal = brPeople.readLine();
+		while (!(temporal == null)) {
 
-            String[] t = temporal.split(",");
+			String[] t = temporal.split(",");
 
-            Person p = new Person(t[0], t[1], t[2], t[3], (t[4].equals("m")) ? 'm' : 'f', Double.parseDouble(t[5]));
+			Person p = new Person(t[0], t[1], t[2], t[3], (t[4].equals("m")) ? 'm' : 'f', Double.parseDouble(t[5]));
 
-            db.put(p.getId(), p);
-            temporal = brPeople.readLine();
-            
-        }
-        brPeople.close();
+			db.put(p.getId(), p);
+			temporal = brPeople.readLine();
 
-        addWordtoTheTrieByID();
-        addWordtoTheTrieByName();
-        addWordtoTheTrieByLastName();
-        addWordtoTheTrieByNameAndLastName();
+		}
+		brPeople.close();
 
-    }
+		addWordtoTheTrieByID();
+		addWordtoTheTrieByName();
+		addWordtoTheTrieByLastName();
+		addWordtoTheTrieByNameAndLastName();
 
-    public void addWordtoTheTrieByID() throws IOException {
-        if (byID == null)
-            byID = new AutocompleteTrie();
+	}
 
-        BufferedReader brName = new BufferedReader(new FileReader(new File(Generator.PATHTOWRITE)));
+	public void addWordtoTheTrieByID() throws IOException {
+		if (byID == null)
+			byID = new AutocompleteTrie();
 
-        brName.readLine();
-        String temporal = brName.readLine();
-        while (!(temporal == null)) {
+		BufferedReader brName = new BufferedReader(new FileReader(new File(Generator.PATHTOWRITE)));
 
-            String[] t = temporal.split(",");
+		brName.readLine();
+		String temporal = brName.readLine();
+		while (!(temporal == null)) {
 
-            byID.addWord(t[1]);
-            temporal = brName.readLine();
-        }
-        brName.close();
-    }
+			String[] t = temporal.split(",");
 
-    public void addWordtoTheTrieByName() throws IOException {
-        if (byName == null)
-            byName = new AutocompleteTrie();
+			byID.addWord(t[1]);
+			temporal = brName.readLine();
+		}
+		brName.close();
+	}
 
-        BufferedReader brName = new BufferedReader(new FileReader(new File(Generator.PATHTOWRITE)));
+	public void addWordtoTheTrieByName() throws IOException {
+		if (byName == null)
+			byName = new AutocompleteTrie();
 
-        brName.readLine();
-        String temporal = brName.readLine();
-        while (!(temporal == null)) {
+		BufferedReader brName = new BufferedReader(new FileReader(new File(Generator.PATHTOWRITE)));
 
-            String[] t = temporal.split(",");
+		brName.readLine();
+		String temporal = brName.readLine();
+		while (!(temporal == null)) {
 
-            byName.addWord(t[1]);
-            temporal = brName.readLine();
-        }
-        brName.close();
-    }
+			String[] t = temporal.split(",");
 
-    public void addWordtoTheTrieByLastName() throws IOException {
-        if (byLastName == null)
-            byLastName = new AutocompleteTrie();
+			byName.addWord(t[1]);
+			temporal = brName.readLine();
+		}
+		brName.close();
+	}
 
-        BufferedReader brLastName = new BufferedReader(new FileReader(new File(Generator.PATHTOWRITE)));
+	public void addWordtoTheTrieByLastName() throws IOException {
+		if (byLastName == null)
+			byLastName = new AutocompleteTrie();
 
-        brLastName.readLine();
-        String temporal = brLastName.readLine();
-        while (!(temporal == null)) {
+		BufferedReader brLastName = new BufferedReader(new FileReader(new File(Generator.PATHTOWRITE)));
 
-            String[] t = temporal.split(",");
+		brLastName.readLine();
+		String temporal = brLastName.readLine();
+		while (!(temporal == null)) {
 
-            byLastName.addWord(t[2]);
-            temporal = brLastName.readLine();
-        }
-        brLastName.close();
-    }
+			String[] t = temporal.split(",");
 
-    public void addWordtoTheTrieByNameAndLastName() throws IOException {
-        if (byNameAndLastName == null)
-            byNameAndLastName = new AutocompleteTrie();
+			byLastName.addWord(t[2]);
+			temporal = brLastName.readLine();
+		}
+		brLastName.close();
+	}
 
-        BufferedReader brNameAndLastName = new BufferedReader(new FileReader(new File(Generator.PATHTOWRITE)));
+	public void addWordtoTheTrieByNameAndLastName() throws IOException {
+		if (byNameAndLastName == null)
+			byNameAndLastName = new AutocompleteTrie();
 
-        brNameAndLastName.readLine();
-        String temporal = brNameAndLastName.readLine();
-        while (!(temporal == null)) {
+		BufferedReader brNameAndLastName = new BufferedReader(new FileReader(new File(Generator.PATHTOWRITE)));
 
-            String[] t = temporal.split(",");
+		brNameAndLastName.readLine();
+		String temporal = brNameAndLastName.readLine();
+		while (!(temporal == null)) {
 
-            byNameAndLastName.addWord(t[1] + " "+ t[2]);
-            temporal = brNameAndLastName.readLine();
-        }
-        brNameAndLastName.close();
-    }
+			String[] t = temporal.split(",");
 
-    public void addPerson(Person p) {
+			byNameAndLastName.addWord(t[1] + " " + t[2]);
+			temporal = brNameAndLastName.readLine();
+		}
+		brNameAndLastName.close();
+	}
 
-        db.put(p.getId(), p);
+	public void addPerson(Person p) {
 
-        byID.addWord(p.getId());
-        byLastName.addWord(p.getLastName());
-    }
+		db.put(p.getId(), p);
 
-    public Person verifyID(String id) {
-        if (db.searchNode2(id) == null) {
-            return null;
-        }
+		byID.addWord(p.getId());
+		byLastName.addWord(p.getLastName());
+	}
 
-        return db.searchNode2(id);
-    }
+	public Person verifyID(String id) {
+		if (db.searchNode2(id) == null) {
+			return null;
+		}
 
-    public void loadDataSearchingByName(String name) {
-    	List<Person> p = db.searchByName(name);
-    	
-    }
-    public DBDriver() {
+		return db.searchNode2(id);
+	}
 
-        db = new AVLTree<String, Person>();
-        // at = new AutocompleteTrie();
-    }
+	public void loadDataSearchingByName(String name) {
+		List<Person> p = db.searchByName(name);
 
-    public AVLTree<String, Person> getDb() {
-        return db;
-    }
+	}
 
-    public void setDb(AVLTree<String, Person> db) {
-        this.db = db;
-    }
+	public DBDriver() {
 
-    public AutocompleteTrie getByID() {
-        return byID;
-    }
+		db = new AVLTree<String, Person>();
+		// at = new AutocompleteTrie();
+	}
 
-    public void setByID(AutocompleteTrie byID) {
-        this.byID = byID;
-    }
+	public AVLTree<String, Person> getDb() {
+		return db;
+	}
 
-    public AutocompleteTrie getByName() {
-        return byName;
-    }
+	public void setDb(AVLTree<String, Person> db) {
+		this.db = db;
+	}
 
-    public void setByName(AutocompleteTrie byName) {
-        this.byName = byName;
-    }
+	public AutocompleteTrie getByID() {
+		return byID;
+	}
 
-    public AutocompleteTrie getByLastName() {
-        return byLastName;
-    }
+	public void setByID(AutocompleteTrie byID) {
+		this.byID = byID;
+	}
 
-    public void setByLastName(AutocompleteTrie byLastName) {
-        this.byLastName = byLastName;
-    }
+	public AutocompleteTrie getByName() {
+		return byName;
+	}
 
-    public AutocompleteTrie getByNameAndLastName() {
-        return byNameAndLastName;
-    }
+	public void setByName(AutocompleteTrie byName) {
+		this.byName = byName;
+	}
 
-    public void setByNameAndLastName(AutocompleteTrie byNameAndLastName) {
-        this.byNameAndLastName = byNameAndLastName;
-    }
+	public AutocompleteTrie getByLastName() {
+		return byLastName;
+	}
 
+	public void setByLastName(AutocompleteTrie byLastName) {
+		this.byLastName = byLastName;
+	}
+
+	public AutocompleteTrie getByNameAndLastName() {
+		return byNameAndLastName;
+	}
+
+	public void setByNameAndLastName(AutocompleteTrie byNameAndLastName) {
+		this.byNameAndLastName = byNameAndLastName;
+	}
+
+	public List<Person> searchByName(String name) {
+		return db.searchByName(name);
+
+	}
+
+	public List<Person> searchByLastName(String lastname) {
+		return db.searchByNameAndLastName(lastname);
+
+	}
+
+	public Person searchByID(String id) {
+		return db.searchNode2(id);
+
+	}
+
+	public List<Person> searchByNameAndLastName(String nameandlastname) {
+		return db.searchByNameAndLastName(nameandlastname);
+	}
 }

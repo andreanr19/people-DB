@@ -1,8 +1,6 @@
 package ui;
 
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.time.LocalDate;
 import java.util.Optional;
 
@@ -34,6 +32,8 @@ import thread.ProgressBarThread;
 
 public class PeopleController {
 
+	@FXML
+	private Pane paneResults;
 	@FXML
 	private DatePicker birthDateTF;
 
@@ -89,16 +89,7 @@ public class PeopleController {
 	private TextField idSearchTF;
 
 	@FXML
-	private TextField nameSearchTF;
-
-	@FXML
-	private TextField lastNSearchTF;
-
-	@FXML
-	private TextField heightSearchTF;
-
-	@FXML
-	private TextField genderSearchTF;
+	private TextField found;
 
 	@FXML
 	private RadioButton nameModifyRB;
@@ -189,7 +180,6 @@ public class PeopleController {
 
 	}
 
-	
 	@FXML
 	private RadioButton autocompleteByName;
 	@FXML
@@ -199,8 +189,6 @@ public class PeopleController {
 	@FXML
 	private RadioButton autocompleteByID;
 
-	
-
 	@FXML
 	void txtKeyReleased(KeyEvent event) {
 		String search = idSearchTF.getText().trim();
@@ -208,19 +196,35 @@ public class PeopleController {
 			if (autocompleteByName.isSelected()) {
 				System.out.println(search);
 				TextFields.bindAutoCompletion(idSearchTF, db.getByName().predictCompletions(search, 100));
-			}else if(autocompleteByNameAndLN.isSelected()) {
+			} else if (autocompleteByNameAndLN.isSelected()) {
 				TextFields.bindAutoCompletion(idSearchTF, db.getByNameAndLastName().predictCompletions(search, 100));
-			}else if(autocompleteByID.isSelected()) {
+			} else if (autocompleteByID.isSelected()) {
 				TextFields.bindAutoCompletion(idSearchTF, db.getByID().predictCompletions(search, 100));
 
-			}else if(autocompleteByLastName.isSelected()) {
+			} else if (autocompleteByLastName.isSelected()) {
 				TextFields.bindAutoCompletion(idSearchTF, db.getByLastName().predictCompletions(search, 100));
 
 			}
 		}
 	}
-
-
+	
+	@FXML
+	void searchBtn(ActionEvent event) {
+		String search = idSearchTF.getText();
+		if(autocompleteByName.isSelected()) {
+			found.setText(db.searchByName(search).size()+"");
+		}else if(autocompleteByNameAndLN.isSelected()) {
+			found.setText(db.searchByNameAndLastName(search).size()+"");
+		}else if(autocompleteByID.isSelected()) {
+			if(db.searchByID(search)!=null) {
+				found.setText("1");
+			}else {
+				found.setText("0");
+			}
+		}else if(autocompleteByLastName.isSelected()) {
+			found.setText(db.searchByNameAndLastName(search).size()+"");
+		}
+	}
 
 	@FXML
 	void generateBT(ActionEvent event) {

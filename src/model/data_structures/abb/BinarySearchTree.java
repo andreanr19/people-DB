@@ -263,7 +263,7 @@ public class BinarySearchTree<K extends Comparable<K>, T extends Person> impleme
 			return theListByName;
 		}
 
-		if (current.getValue().getName().equals(name)) {
+		if (current.getValue().getName().equalsIgnoreCase(name)) {
 			theListByName.add(current.getValue());
 		}
 
@@ -290,7 +290,7 @@ public class BinarySearchTree<K extends Comparable<K>, T extends Person> impleme
 			return theListByName;
 		}
 
-		if (current.getValue().getLastName().equals(name)) {
+		if (current.getValue().getLastName().equalsIgnoreCase(name)) {
 			theListByName.add(current.getValue());
 		}
 
@@ -317,7 +317,7 @@ public class BinarySearchTree<K extends Comparable<K>, T extends Person> impleme
 			return theListByName;
 		}
 
-		if ((current.getValue().getName() + " " + current.getValue().getLastName()).equals(name)) {
+		if ((current.getValue().getName() + " " + current.getValue().getLastName()).equalsIgnoreCase(name)) {
 			theListByName.add(current.getValue());
 		}
 
