@@ -12,139 +12,163 @@ import java.util.Random;
 
 public class Generator {
 
-    public final static String PATHTOREADNAMES = "data/babynames-clean.csv",
-            PATHTOREADLASTNAMES = "data/Names_2010Census.csv", PATHTOREADCOUNTRIES = "data/country_p.csv";
-    public final static String PATHTOWRITE = "data/temporal.csv";
+	public final static String PATHTOREADNAMES = "data/babynames-clean.csv",
+			PATHTOREADLASTNAMES = "data/Names_2010Census.csv", PATHTOREADCOUNTRIES = "data/country_p.csv";
+	public final static String PATHTOWRITE = "data/temporal.csv";
 
-    public final static int MAX_CAPACITY = 1022277970;
+	public final static int MAX_CAPACITY = 1022277970;
 
-    private final static double AGE_RANGE_0_TO_14 = 0.1862;
-    private final static double AGE_RANGE_15_TO_24 = 0.1312 + AGE_RANGE_0_TO_14;
-    private final static double AGE_RANGE_25_TO_54 = 0.3729 + AGE_RANGE_15_TO_24;
-    private final static double AGE_RANGE_55_TO_64 = 0.1294 + AGE_RANGE_25_TO_54;
+	private final static double AGE_RANGE_0_TO_14 = 0.1862;
+	private final static double AGE_RANGE_15_TO_24 = 0.1312 + AGE_RANGE_0_TO_14;
+	private final static double AGE_RANGE_25_TO_54 = 0.3729 + AGE_RANGE_15_TO_24;
+	private final static double AGE_RANGE_55_TO_64 = 0.1294 + AGE_RANGE_25_TO_54;
 
-    public int count, q, countID;
+	public int count, q, countID;
 
-    private List<String> names, lastNames, countries;
-    public double[] populationFactorByCountry;
+	private List<String> names, lastNames, countries;
+	public double[] populationFactorByCountry;
 
-    public Generator() {
+	public Generator() {
 
-        names = new ArrayList<>();
-        lastNames = new ArrayList<>();
-        countries = new ArrayList<>();
-        countID = 0000000000;
-        populationFactorByCountry = new double[36];
+		names = new ArrayList<>();
+		lastNames = new ArrayList<>();
+		countries = new ArrayList<>();
+		countID = 0000000000;
+		populationFactorByCountry = new double[36];
 
-    }
+	}
 
-    public void generateData(int q) throws IOException {
+	public void generateData(int q) throws IOException {
 
-        this.q = q;
+		this.q = q;
 
-        loadDataToGenerate(6000);
+		loadDataToGenerate(6000);
 
-        PrintWriter pw = new PrintWriter(new FileWriter(PATHTOWRITE));
+		PrintWriter pw = new PrintWriter(new FileWriter(PATHTOWRITE));
 
-        pw.write("id,name,lastname,gender,age\n");
+		pw.write("id,name,lastname,gender,age\n");
 
-        for (int i = 0; i < q && count < MAX_CAPACITY; i++) {
+		for (int i = 0; i < q && count < MAX_CAPACITY; i++) {
 
-            pw.write(getRandomPerson());
+			pw.write(getRandomPerson());
 
-            count++;
+			count++;
 
-        }
+		}
 
-        pw.close();
-    }
+		pw.close();
+	}
 
-    public String getRandomPerson() throws IOException {
-        int iName = (int) (Math.random() * (double) names.size()),
-                iLName = (int) (Math.random() * (double) lastNames.size());
-        String tID = countID + "";
-        for (int i = 0; i < 10 && tID.length() < 10; i++) {
+	public String getRandomPerson() throws IOException {
+		int iName = (int) (Math.random() * (double) names.size()),
+				iLName = (int) (Math.random() * (double) lastNames.size());
+		String tID = countID + "";
+		for (int i = 0; i < 10 && tID.length() < 10; i++) {
 
-            tID = "0" + tID;
+			tID = "0" + tID;
 
-        }
+		}
 
-        if (names.size() < 1) {
-            loadDataToGenerate(6780);
-        }
-        String nameAndGender = names.remove(iName).toUpperCase();
-        if (lastNames.size() < 1) {
-            loadDataToGenerate(6780);
-        }
-        String lastName = lastNames.remove(iLName);
-        String gender = (nameAndGender.split(";")[1].equals("BOY")) ? "m" : "f";
+		if (names.size() < 1) {
+			loadDataToGenerate(6780);
+		}
+		String nameAndGender = names.remove(iName).toUpperCase();
+		if (lastNames.size() < 1) {
+			loadDataToGenerate(6780);
+		}
+		String lastName = lastNames.remove(iLName);
+		String gender = (nameAndGender.split(";")[1].equals("BOY")) ? "m" : "f";
 
-        int age;
+		int age;
 
-        Random rN = new Random();
+		Random rN = new Random();
 
-        if ((double) count / (double) q < AGE_RANGE_0_TO_14) {
+		if ((double) count / (double) q < AGE_RANGE_0_TO_14) {
 
-            age = rN.nextInt(14 + 1);
-        } else if ((double) count / (double) q < AGE_RANGE_15_TO_24) {
-            age = rN.nextInt(24 - 15 + 1) + 15;
+			age = rN.nextInt(14 + 1);
+		} else if ((double) count / (double) q < AGE_RANGE_15_TO_24) {
+			age = rN.nextInt(24 - 15 + 1) + 15;
 
-        } else if ((double) count / (double) q < AGE_RANGE_25_TO_54) {
-            age = rN.nextInt(54 - 25 + 1) + 25;
+		} else if ((double) count / (double) q < AGE_RANGE_25_TO_54) {
+			age = rN.nextInt(54 - 25 + 1) + 25;
 
-        } else if ((double) count / (double) q < AGE_RANGE_55_TO_64) {
-            age = rN.nextInt(64 - 55 + 1) + 55;
-        } else {
-            age = rN.nextInt(89 - 65 + 1) + 65;
+		} else if ((double) count / (double) q < AGE_RANGE_55_TO_64) {
+			age = rN.nextInt(64 - 55 + 1) + 55;
+		} else {
+			age = rN.nextInt(89 - 65 + 1) + 65;
 
-        }
+		}
 
-        countID++;
-        return tID + "," + nameAndGender.split(";")[0] + "," + lastName + "," + gender + "," + age + ","
-                + ((int) (Math.random() * (double) 100) + 100) + "," + countries.get(rN.nextInt(countries.size()))
-                + "\n";
-    }
+		countID++;
+		return tID + "," + nameAndGender.split(";")[0] + "," + lastName + "," + gender + "," + age + ","
+				+ ((int) (Math.random() * (double) 100) + 100) + "," + countries.get(rN.nextInt(countries.size()))
+				+ "\n";
+	}
 
-    public void loadDataToGenerate(int x) throws IOException {
+	public void loadDataToGenerate(int x) throws IOException {
 
-        BufferedReader brNames = new BufferedReader(new FileReader(new File(PATHTOREADNAMES)));
-        BufferedReader brLNames = new BufferedReader(new FileReader(new File(PATHTOREADLASTNAMES)));
+		BufferedReader brNames = new BufferedReader(new FileReader(new File(PATHTOREADNAMES)));
+		BufferedReader brLNames = new BufferedReader(new FileReader(new File(PATHTOREADLASTNAMES)));
 
-        brLNames.readLine();
+		brLNames.readLine();
 
-        for (int i = 0; i < x; i++) {
-            names.add(brNames.readLine());
-            lastNames.add(brLNames.readLine().split(",")[0]);
-        }
+		for (int i = 0; i < x; i++) {
+			names.add(brNames.readLine());
+			lastNames.add(brLNames.readLine().split(",")[0]);
+		}
 
-        if (countries.isEmpty()) {
-            BufferedReader brCountries = new BufferedReader(new FileReader(new File(PATHTOREADCOUNTRIES)));
+		if (countries.isEmpty()) {
+			BufferedReader brCountries = new BufferedReader(new FileReader(new File(PATHTOREADCOUNTRIES)));
 
-            brCountries.readLine();
-            for (int i = 0; i < 36; i++) {
-                String t = brCountries.readLine();
-                countries.add(t.split(";")[0]);
-                populationFactorByCountry[i] = Double.parseDouble(t.split(";")[1]);
-            }
+			brCountries.readLine();
+			for (int i = 0; i < 36; i++) {
+				String t = brCountries.readLine();
+				countries.add(t.split(";")[0]);
+				populationFactorByCountry[i] = Double.parseDouble(t.split(";")[1]);
+			}
 
-            brCountries.close();
+			brCountries.close();
 
-        }
-        brNames.close();
-        brLNames.close();
-    }
+		}
+		brNames.close();
+		brLNames.close();
+	}
 
-    public void cleanTemporalFiles() throws IOException {
-        PrintWriter pw = new PrintWriter(new FileWriter(PATHTOWRITE));
-        pw.close();
-    }
+	public void cleanTemporalFiles() throws IOException {
+		PrintWriter pw = new PrintWriter(new FileWriter(PATHTOWRITE));
+		pw.close();
+	}
 
-    public void setQ(int q) {
-        this.q = q;
-    }
+	public void setQ(int q) {
+		this.q = q;
+	}
 
-    public void setCount(int count) {
-        this.count = count;
-    }
+	public void setCount(int count) {
+		this.count = count;
+	}
+
+	public List<String> getNames() {
+		return names;
+	}
+
+	public void setNames(List<String> names) {
+		this.names = names;
+	}
+
+	public List<String> getLastNames() {
+		return lastNames;
+	}
+
+	public void setLastNames(List<String> lastNames) {
+		this.lastNames = lastNames;
+	}
+
+	public List<String> getCountries() {
+		return countries;
+	}
+
+	public void setCountries(List<String> countries) {
+		this.countries = countries;
+	}
 
 }
