@@ -11,8 +11,6 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.sun.corba.se.impl.encoding.CodeSetConversion.BTCConverter;
-
 import model.data_structures.avl.AVLTree;
 import model.data_structures_trie.AutocompleteTrie;
 
@@ -26,8 +24,6 @@ public class DBDriver {
 	public static String PEOPLE_FILE_BY_LASTNAME = "data/peoplebylastname.dat";
 	public static String PEOPLE_FILE_BY_NAME_AND_LASTNAME = "data/peoplebynameandlastname.dat";
 	public static String PEOPLE_FILE_BY_ID = "data/peoplebyid.dat";
-
-
 
 	public void loadGeneratedData() throws IOException {
 
@@ -214,13 +210,12 @@ public class DBDriver {
 	public List<Person> searchByNameAndLastName(String nameandlastname) {
 		return db.searchByNameAndLastName(nameandlastname);
 	}
+
 	public void saveState() throws IOException {
 
 		ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(PEOPLE_FILE_NAME));
 
 		oos.writeObject(db);
-		
-		
 
 		oos.close();
 
@@ -229,33 +224,30 @@ public class DBDriver {
 	@SuppressWarnings("unchecked")
 	public void loadState() throws IOException, ClassNotFoundException {
 
-		ObjectInputStream ois =new ObjectInputStream(new FileInputStream(PEOPLE_FILE_NAME));
-		
-		
+		ObjectInputStream ois = new ObjectInputStream(new FileInputStream(PEOPLE_FILE_NAME));
+
 		db = (AVLTree<String, Person>) ois.readObject();
-		
-		List<Person> people= db.returnPeople(db.root);
-		if(byName==null) {
+
+		List<Person> people = db.returnPeople(db.root);
+		if (byName == null) {
 			byName = new AutocompleteTrie();
 		}
 		if (byLastName == null)
 			byLastName = new AutocompleteTrie();
-		
+
 		if (byNameAndLastName == null)
 			byNameAndLastName = new AutocompleteTrie();
-		
+
 		if (byID == null)
 			byID = new AutocompleteTrie();
 
 		for (int i = 0; i < people.size(); i++) {
 			byName.addWord(people.get(i).getName());
 			byLastName.addWord(people.get(i).getLastName());
-			byNameAndLastName.addWord(people.get(i).getName() + " " +people.get(i).getLastName());
+			byNameAndLastName.addWord(people.get(i).getName() + " " + people.get(i).getLastName());
 			byID.addWord(people.get(i).getId());
 		}
 		ois.close();
-		
-		
-		
+
 	}
 }
