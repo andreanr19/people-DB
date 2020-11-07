@@ -19,6 +19,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonBar.ButtonData;
@@ -26,6 +27,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import model.DBDriver;
 import model.Generator;
@@ -195,12 +197,41 @@ public class PeopleController implements Initializable {
 			}
 		}
 	}
-	
+
 	@FXML
 	void saveCurrentState(ActionEvent event) {
 		try {
-			db.saveState();
-			
+
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("Confirmar.");
+			alert.setHeaderText("Guardar y salir.");
+			alert.setContentText("¿Desea guardar el estado actual y cerrar\nla aplicacion?");
+
+			ButtonType buttonTypeOne = new ButtonType("Confirmar");
+			ButtonType buttonTypeCancel = new ButtonType("Cancelar", ButtonData.CANCEL_CLOSE);
+
+			alert.getButtonTypes().setAll(buttonTypeOne, buttonTypeCancel);
+
+			Optional<ButtonType> result = alert.showAndWait();
+			if (result.get() == buttonTypeOne) {
+
+				db.saveState();
+
+				Node source = (Node) event.getSource();
+				Stage stage = (Stage) source.getScene().getWindow();
+				stage.close();
+
+				Alert bye = new Alert(AlertType.INFORMATION);
+				bye.setTitle("Adios");
+				bye.setHeaderText("Gracias por usar People Database V1.0");
+				bye.setContentText("Desarrolladores:\n\n -Dannasofiagarcia\n -andreanr19\n -kamneklogs");
+
+				bye.showAndWait();
+
+				// db.getDb().preOrden(db.getDb().root);
+
+			}
+
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -211,32 +242,64 @@ public class PeopleController implements Initializable {
 	void loadPreviousState(ActionEvent event) {
 		try {
 			db.loadState();
-		} catch (ClassNotFoundException e) {
+
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("Confirmar.");
+			alert.setHeaderText("Cargar estado anterior.");
+			alert.setContentText("Se sobreescribirá la informacion no guardada.\n ¿Desea confirmar el proceso?");
+
+			ButtonType buttonTypeOne = new ButtonType("Confirmar");
+			ButtonType buttonTypeCancel = new ButtonType("Cancelar", ButtonData.CANCEL_CLOSE);
+
+			alert.getButtonTypes().setAll(buttonTypeOne, buttonTypeCancel);
+
+			Optional<ButtonType> result = alert.showAndWait();
+			if (result.get() == buttonTypeOne) {
+
+				db.saveState();
+
+				Alert bye = new Alert(AlertType.INFORMATION);
+				bye.setTitle("Realizado");
+				bye.setHeaderText("Carga completada");
+				bye.setContentText("La carga de los datos ha sido completada\nen la base de datos");
+
+				bye.showAndWait();
+
+			}
+
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Error.");
+			alert.setHeaderText("Error en la carga.");
+			alert.setContentText("Ha ocurrido un problema con los archivos de carga, por favor verifique.");
 			e.printStackTrace();
 		}
 	}
+
 	@FXML
 	void searchBtn(ActionEvent event) {
 		String search = idSearchTF.getText();
 		if (autocompleteByName.isSelected()) {
 			found.setText(db.searchByName(search).size() + "");
+			foundList.clear();
 			foundList = db.searchByName(search);
 		} else if (autocompleteByNameAndLN.isSelected()) {
 			found.setText(db.searchByNameAndLastName(search).size() + "");
+			foundList.clear();
 			foundList = db.searchByNameAndLastName(search);
 		} else if (autocompleteByID.isSelected()) {
 			if (db.searchByID(search) != null) {
 				found.setText("1");
+				foundList.clear();
 				foundList.add(db.searchByID(search));
 			} else {
 				found.setText("0");
 			}
 		} else if (autocompleteByLastName.isSelected()) {
+
 			found.setText(db.searchByLastName(search).size() + "");
+			foundList.clear();
 			foundList = db.searchByLastName(search);
 		}
 		initialize(null, null);
@@ -276,10 +339,10 @@ public class PeopleController implements Initializable {
 
 				g.cleanTemporalFiles();
 
-				Alert warning = new Alert(AlertType.CONFIRMATION);
+				Alert warning = new Alert(AlertType.INFORMATION);
 				warning.setTitle("Data cargada");
 				warning.initStyle(StageStyle.DECORATED);
-				warning.setContentText("Los  datos generados fueron cargados exitosamente.");
+				warning.setContentText("Los  datos generados fueron cargados\n exitosamente.");
 				warning.show();
 
 				// db.getDb().preOrden(db.getDb().root);
@@ -355,9 +418,26 @@ public class PeopleController implements Initializable {
 			Alert warning = new Alert(AlertType.CONFIRMATION);
 			warning.setTitle("Persona registrada");
 			warning.initStyle(StageStyle.DECORATED);
-			warning.setContentText("La persona con ID " + idCreateTF.getText() + " fue eliminado exitosamente.");
+			warning.setContentText("La persona con ID " + idTF.getText() + " fue eliminado exitosamente.");
 			warning.show();
 			initialize(null, null);
+
+			idTF.setEditable(false);
+			nombreTF.setEditable(false);
+			generoTF.setEditable(false);
+			apellidoTF.setEditable(false);
+			edadTF.setEditable(false);
+			alturaTF.setEditable(false);
+			nacionalidadTF.setEditable(false);
+
+			idTF.clear();
+			nombreTF.clear();
+			generoTF.clear();
+			apellidoTF.clear();
+			edadTF.clear();
+			alturaTF.clear();
+			nacionalidadTF.clear();
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -372,6 +452,7 @@ public class PeopleController implements Initializable {
 		edadTF.setEditable(true);
 		alturaTF.setEditable(true);
 		nacionalidadTF.setEditable(true);
+		editButton.setDisable(true);
 
 	}
 
@@ -385,9 +466,21 @@ public class PeopleController implements Initializable {
 			Alert warning = new Alert(AlertType.CONFIRMATION);
 			warning.setTitle("Persona registrada");
 			warning.initStyle(StageStyle.DECORATED);
-			warning.setContentText("La persona con ID " + idCreateTF.getText() + " fue modificado exitosamente.");
+			warning.setContentText("La persona con ID " + idTF.getText() + " fue modificado exitosamente.");
 			warning.show();
 			initialize(null, null);
+			editButton.setDisable(false);
+
+			idTF.setEditable(false);
+			nombreTF.setEditable(false);
+			generoTF.setEditable(false);
+			apellidoTF.setEditable(false);
+			edadTF.setEditable(false);
+			alturaTF.setEditable(false);
+			nacionalidadTF.setEditable(false);
+
+			searchBtn(event);
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

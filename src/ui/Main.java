@@ -37,7 +37,7 @@ public class Main extends Application {
 
 		Scene scene = new Scene(root);
 		primaryStage.setScene(scene);
-		primaryStage.setTitle("People Database");
+		primaryStage.setTitle("People Database V1.0");
 		primaryStage.show();
 
 		

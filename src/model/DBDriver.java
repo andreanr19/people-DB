@@ -198,7 +198,7 @@ public class DBDriver {
 	}
 
 	public List<Person> searchByLastName(String lastname) {
-		return db.searchByNameAndLastName(lastname);
+		return db.searchByLastName(lastname);
 
 	}
 
