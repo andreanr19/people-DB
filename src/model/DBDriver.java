@@ -25,7 +25,8 @@ public class DBDriver {
 
 			String[] t = temporal.split(",");
 
-			Person p = new Person(t[0], t[1], t[2], t[3], (t[4].equals("m")) ? 'm' : 'f', Double.parseDouble(t[5]), t[6]);
+			Person p = new Person(t[0], t[1], t[2], t[3], (t[4].equals("m")) ? 'm' : 'f', Double.parseDouble(t[5]),
+					t[6]);
 
 			db.put(p.getId(), p);
 			temporal = brPeople.readLine();
@@ -117,7 +118,10 @@ public class DBDriver {
 		db.put(p.getId(), p);
 
 		byID.addWord(p.getId());
+		byName.addWord(p.getName());
+
 		byLastName.addWord(p.getLastName());
+		byNameAndLastName.addWord(p.getName() + " " + p.getLastName());
 	}
 
 	public Person verifyID(String id) {
