@@ -189,6 +189,8 @@ public class PeopleController implements Initializable {
 	private ObservableList<Person> people;
 
 	@FXML
+	private TextField idTF;
+	@FXML
 	private TextField nombreTF;
 
 	@FXML
@@ -284,6 +286,7 @@ public class PeopleController implements Initializable {
 			found.setText(db.searchByLastName(search).size() + "");
 			foundList = db.searchByLastName(search);
 		}
+		initialize(null, null);
 	}
 
 	List<Person> foundList;
@@ -387,6 +390,17 @@ public class PeopleController implements Initializable {
 
 	}
 
+	@FXML
+	void editBtn(ActionEvent event) {
+		idTF.setEditable(false);
+		nombreTF.setEditable(true);
+		apellidoTF.setEditable(true);
+		edadTF.setEditable(true);
+		alturaTF.setEditable(true);
+		nacionalidadTF.setEditable(true);
+		
+		
+	}
 	@FXML
 	void addPersonBT(ActionEvent event) {
 
@@ -510,6 +524,7 @@ public class PeopleController implements Initializable {
 		if (persona != null) {
 
 			// Pongo los textFields con los datos correspondientes
+			idTF.setText(persona.getId());
 			nombreTF.setText(persona.getName());
 			apellidoTF.setText(persona.getLastName());
 			edadTF.setText(persona.getBirthdate());
