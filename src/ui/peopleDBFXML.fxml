@@ -72,30 +72,7 @@
                </children></AnchorPane>
       </content>
     </Tab>
-    <Tab text="Remover">
-      <content>
-        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-               <children>
-                  <TextField fx:id="idRemoveTF" layoutX="57.0" layoutY="49.0" prefHeight="25.0" prefWidth="291.0" promptText="Ingrese el id de la persona" />
-                  <Label layoutX="163.0" layoutY="14.0" text="Ingrese la información de la persona que desea eliminar" />
-                  <Button fx:id="searchRemoveBT" layoutX="399.0" layoutY="49.0" mnemonicParsing="false" text="Buscar" />
-                  <Separator layoutY="119.0" prefHeight="0.0" prefWidth="600.0" />
-                  <Label layoutX="29.0" layoutY="158.0" text="Nombre" />
-                  <Label layoutX="29.0" layoutY="198.0" text="Apellido" />
-                  <Label layoutX="30.0" layoutY="238.0" text="Estatura" />
-                  <Label layoutX="29.0" layoutY="279.0" text="Género" />
-                  <Label layoutX="32.0" layoutY="320.0" text="Fecha nacimiento" />
-                  <TextField fx:id="nameRemoveTF" editable="false" layoutX="125.0" layoutY="154.0" prefHeight="25.0" prefWidth="291.0" />
-                  <TextField fx:id="lastNRemoveTF" editable="false" layoutX="125.0" layoutY="194.0" prefHeight="25.0" prefWidth="291.0" />
-                  <TextField fx:id="heightRemoveTF" editable="false" layoutX="125.0" layoutY="234.0" prefHeight="25.0" prefWidth="291.0" />
-                  <TextField fx:id="genderRemoveTF" editable="false" layoutX="125.0" layoutY="275.0" prefHeight="25.0" prefWidth="291.0" />
-                  <TextField fx:id="birthDateRemoveTF" editable="false" layoutX="142.0" layoutY="316.0" prefHeight="25.0" prefWidth="291.0" />
-                  <Label layoutX="188.0" layoutY="128.0" text="Datos de la persona que se desea eliminar" />
-                  <Button fx:id="removePersonBT" layoutX="451.0" layoutY="220.0" mnemonicParsing="false" text="Remover persona" />
-               </children></AnchorPane>
-      </content>
-    </Tab>
-      <Tab text="Buscar">
+      <Tab text="Buscar/Modificar">
          <content>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
@@ -145,27 +122,27 @@
                                           <Label font="$x1" layoutX="43.0" layoutY="212.0" text="Genero:" />
                                           <Label font="$x1" layoutX="48.0" layoutY="165.0" text="Edad:" />
                                           <Label font="$x1" layoutX="42.0" layoutY="114.0" text="Apellidos:" />
-                                          <TextField fx:id="nombreTF" layoutX="39.0" layoutY="85.0" prefHeight="26.0" prefWidth="239.0" />
-                                          <TextField fx:id="apellidoTF" layoutX="41.0" layoutY="138.0" prefHeight="26.0" prefWidth="239.0" />
-                                          <TextField fx:id="edadTF" layoutX="41.0" layoutY="185.0" prefHeight="26.0" prefWidth="239.0" />
-                                          <TextField fx:id="generoTF" layoutX="41.0" layoutY="237.0" prefHeight="26.0" prefWidth="239.0" />
+                                          <TextField fx:id="nombreTF" editable="false" layoutX="39.0" layoutY="85.0" prefHeight="26.0" prefWidth="239.0" />
+                                          <TextField fx:id="apellidoTF" editable="false" layoutX="41.0" layoutY="138.0" prefHeight="26.0" prefWidth="239.0" />
+                                          <TextField fx:id="edadTF" editable="false" layoutX="41.0" layoutY="185.0" prefHeight="26.0" prefWidth="239.0" />
+                                          <TextField fx:id="generoTF" editable="false" layoutX="41.0" layoutY="237.0" prefHeight="26.0" prefWidth="239.0" />
                                           <Button fx:id="editButton" font="$x1" layoutX="12.0" layoutY="402.0" mnemonicParsing="false" onAction="#editBtn" prefHeight="29.0" prefWidth="138.0" text="Modificar" />
-                                          <Button fx:id="removeButton" font="$x1" layoutX="53.0" layoutY="445.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="234.0" text="Eliminar" />
-                                          <Button fx:id="confirmButton" font="$x1" layoutX="176.0" layoutY="401.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="134.0" text="Confirmar" />
+                                          <Button fx:id="removeButton" font="$x1" layoutX="53.0" layoutY="445.0" mnemonicParsing="false" onAction="#removePersonBtn" prefHeight="38.0" prefWidth="234.0" text="Eliminar" />
+                                          <Button fx:id="confirmButton" font="$x1" layoutX="176.0" layoutY="401.0" mnemonicParsing="false" onAction="#confirmChangesBtn" prefHeight="30.0" prefWidth="134.0" text="Confirmar" />
                                           <Label layoutX="36.0" layoutY="274.0" text="Altura:">
                                              <font>
                                                 <Font name="System Bold Italic" size="15.0" fx:id="x11" />
                                              </font>
                                           </Label>
-                                          <TextField fx:id="alturaTF" layoutX="41.0" layoutY="304.0" prefHeight="26.0" prefWidth="239.0" />
+                                          <TextField fx:id="alturaTF" editable="false" layoutX="41.0" layoutY="304.0" prefHeight="26.0" prefWidth="239.0" />
                                           <Label layoutX="39.0" layoutY="331.0" text="Nacionalidad:">
                                              <font>
                                                 <Font name="System Bold Italic" size="15.0" fx:id="x111" />
                                              </font>
                                           </Label>
-                                          <TextField fx:id="nacionalidadTF" layoutX="39.0" layoutY="360.0" prefHeight="26.0" prefWidth="239.0" />
+                                          <TextField fx:id="nacionalidadTF" editable="false" layoutX="39.0" layoutY="360.0" prefHeight="26.0" prefWidth="239.0" />
                                           <Separator layoutX="-2.0" layoutY="436.0" prefHeight="1.0" prefWidth="326.0" />
-                                          <TextField fx:id="idTF" layoutX="39.0" layoutY="34.0" prefHeight="26.0" prefWidth="239.0" />
+                                          <TextField fx:id="idTF" editable="false" layoutX="39.0" layoutY="34.0" prefHeight="26.0" prefWidth="239.0" />
                                           <Label layoutX="39.0" layoutY="14.0" text="ID:">
                                              <font>
                                                 <Font name="System Bold Italic" size="15.0" fx:id="x12" />
@@ -179,29 +156,6 @@
                         </AnchorPane>
                      </children>
                   </Pane>
-               </children></AnchorPane>
-         </content>
-      </Tab>
-      <Tab text="Modificar">
-         <content>
-            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-               <children>
-                  <Label layoutX="186.0" layoutY="14.0" text="Seleccione que dato desea modificar de la persona" />
-                  <RadioButton fx:id="nameModifyRB" layoutX="26.0" layoutY="52.0" mnemonicParsing="false" onAction="#modifyNamePane" text="Nombre">
-                     <toggleGroup>
-                        <ToggleGroup fx:id="modifyOptions" />
-                     </toggleGroup>
-                  </RadioButton>
-                  <RadioButton fx:id="lastNModifyRB" layoutX="130.0" layoutY="52.0" mnemonicParsing="false" onAction="#modifyLastNamePane" text="Apellido" toggleGroup="$modifyOptions" />
-                  <RadioButton fx:id="idModifyRB" layoutX="252.0" layoutY="52.0" mnemonicParsing="false" onAction="#modifyIdPane" text="Código" toggleGroup="$modifyOptions" />
-                  <RadioButton fx:id="heightModifyRB" layoutX="366.0" layoutY="52.0" mnemonicParsing="false" onAction="#modifyHeightPane" text="Estatura" toggleGroup="$modifyOptions" />
-                  <RadioButton fx:id="genderModifyRB" layoutX="496.0" layoutY="52.0" mnemonicParsing="false" onAction="#modifyGenderPane" text="Género" toggleGroup="$modifyOptions" />
-                  <Separator layoutY="87.0" prefHeight="0.0" prefWidth="600.0" />
-                  <Label layoutX="172.0" layoutY="95.0" text="Ingrese el id de la persona que desea modificar" />
-                  <TextField fx:id="idModifyTF" layoutX="86.0" layoutY="126.0" prefHeight="25.0" prefWidth="273.0" />
-                  <Button fx:id="checkModifyBT" layoutX="437.0" layoutY="124.0" mnemonicParsing="false" text="Verificar" />
-                  <Separator layoutY="171.0" prefHeight="0.0" prefWidth="600.0" />
-                  <Pane fx:id="modifyPane" layoutY="174.0" prefHeight="197.0" prefWidth="600.0" />
                </children></AnchorPane>
          </content>
       </Tab>

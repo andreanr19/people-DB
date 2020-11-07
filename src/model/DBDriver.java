@@ -116,7 +116,6 @@ public class DBDriver {
 	public void addPerson(Person p) {
 
 		db.put(p.getId(), p);
-
 		byID.addWord(p.getId());
 		byName.addWord(p.getName());
 

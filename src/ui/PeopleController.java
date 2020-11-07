@@ -78,23 +78,7 @@ public class PeopleController implements Initializable {
 	@FXML
 	private TextField heightCreateTF;
 
-	@FXML
-	private TextField idRemoveTF;
 
-	@FXML
-	private TextField nameRemoveTF;
-
-	@FXML
-	private TextField lastNRemoveTF;
-
-	@FXML
-	private TextField heightRemoveTF;
-
-	@FXML
-	private TextField genderRemoveTF;
-
-	@FXML
-	private TextField birthDateRemoveTF;
 
 	@FXML
 	private TextField idSearchTF;
@@ -102,23 +86,9 @@ public class PeopleController implements Initializable {
 	@FXML
 	private TextField found;
 
-	@FXML
-	private RadioButton nameModifyRB;
 
-	@FXML
-	private ToggleGroup modifyOptions;
 
-	@FXML
-	private RadioButton lastNModifyRB;
 
-	@FXML
-	private RadioButton idModifyRB;
-
-	@FXML
-	private RadioButton heightModifyRB;
-
-	@FXML
-	private RadioButton genderModifyRB;
 
 	@FXML
 	private TextField idModifyTF;
@@ -137,28 +107,23 @@ public class PeopleController implements Initializable {
 	@FXML
 	private Pane modifyPane;
 
-	@FXML
-	private Pane modifyNameFXML;
+	
 
 	@FXML
 	private TextField newNameTF;
 
-	@FXML
-	private Pane modifyLastNameFXML;
+	
 
 	@FXML
 	private TextField newLastNameTF;
 
-	@FXML
-	private Pane modifyHeightFXML;
 
 	@FXML
 	private TextField newHeightTF;
 	@FXML
 	private TextField nationalityCreateTF;
 
-	@FXML
-	private Pane modifyGenderFXML;
+
 
 	@FXML
 	private RadioButton femaleNewRB;
@@ -218,25 +183,7 @@ public class PeopleController implements Initializable {
 		foundList = new ArrayList<Person>();
 	}
 
-	@FXML
-	void changeGenderBT(ActionEvent event) {
-
-	}
-
-	@FXML
-	void changeHeightBT(ActionEvent event) {
-
-	}
-
-	@FXML
-	void changeLastNameBT(ActionEvent event) {
-
-	}
-
-	@FXML
-	void changeNameBT(ActionEvent event) {
-
-	}
+	
 
 	@FXML
 	private RadioButton autocompleteByName;
@@ -352,14 +299,7 @@ public class PeopleController implements Initializable {
 
 	}
 
-	@FXML
-	void modifyNamePane(ActionEvent event) throws IOException {
-		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("modifyNameFXML.fxml"));
-		fxmlLoader.setController(this);
-		Parent nameFXML = fxmlLoader.load();
-		modifyPane.getChildren().clear();
-		modifyPane.getChildren().add(nameFXML);
-	}
+
 
 	@FXML
 	void generateMaxBT(ActionEvent event) {
@@ -389,17 +329,59 @@ public class PeopleController implements Initializable {
 		}
 
 	}
+	@FXML
+	void removePersonBtn(ActionEvent event) {
+		try {
+			db.getDb().delete(idTF.getText());
+			for (int i = 0; i < foundList.size(); i++) {
+				if(foundList.get(i).getId().equalsIgnoreCase(idTF.getText())) {
+					foundList.remove(i);
+					i= foundList.size();
+					found.setText((Integer.parseInt(found.getText())-1)+"");
+				}
+				
+			}
+			Alert warning = new Alert(AlertType.CONFIRMATION);
+			warning.setTitle("Persona registrada");
+			warning.initStyle(StageStyle.DECORATED);
+			warning.setContentText("La persona con ID " + idCreateTF.getText() + " fue eliminado exitosamente.");
+			warning.show();
+			initialize(null, null);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
 
 	@FXML
 	void editBtn(ActionEvent event) {
 		idTF.setEditable(false);
 		nombreTF.setEditable(true);
+		generoTF.setEditable(true);
 		apellidoTF.setEditable(true);
 		edadTF.setEditable(true);
 		alturaTF.setEditable(true);
 		nacionalidadTF.setEditable(true);
 		
 		
+	}
+	@FXML
+	void confirmChangesBtn(ActionEvent event) {
+		db.getDb().delete(idTF.getText());
+		try {
+			db.addPerson(new Person(idTF.getText(), nombreTF.getText(), apellidoTF.getText(),
+					edadTF.getText(),
+					generoTF.getText().charAt(0), Double.parseDouble(alturaTF.getText()),
+					nacionalidadTF.getText()));
+
+			Alert warning = new Alert(AlertType.CONFIRMATION);
+			warning.setTitle("Persona registrada");
+			warning.initStyle(StageStyle.DECORATED);
+			warning.setContentText("La persona con ID " + idCreateTF.getText() + " fue modificado exitosamente.");
+			warning.show();
+			initialize(null, null);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
 	}
 	@FXML
 	void addPersonBT(ActionEvent event) {
@@ -421,41 +403,8 @@ public class PeopleController implements Initializable {
 
 	}
 
-	@FXML
-	void modifyLastNamePane(ActionEvent event) throws IOException {
-		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("modifyLastNameFXML.fxml"));
-		fxmlLoader.setController(this);
-		Parent lastNameFXML = fxmlLoader.load();
-		modifyPane.getChildren().clear();
-		modifyPane.getChildren().add(lastNameFXML);
-	}
 
-	@FXML
-	void modifyIdPane(ActionEvent event) throws IOException {
-		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("modifyIdFXML.fxml"));
-		fxmlLoader.setController(this);
-		Parent idFXML = fxmlLoader.load();
-		modifyPane.getChildren().clear();
-		modifyPane.getChildren().add(idFXML);
-	}
 
-	@FXML
-	void modifyHeightPane(ActionEvent event) throws IOException {
-		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("modifyHeightFXML.fxml"));
-		fxmlLoader.setController(this);
-		Parent heightFXML = fxmlLoader.load();
-		modifyPane.getChildren().clear();
-		modifyPane.getChildren().add(heightFXML);
-	}
-
-	@FXML
-	void modifyGenderPane(ActionEvent event) throws IOException {
-		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("modifyGenderFXML.fxml"));
-		fxmlLoader.setController(this);
-		Parent genderFXML = fxmlLoader.load();
-		modifyPane.getChildren().clear();
-		modifyPane.getChildren().add(genderFXML);
-	}
 
 	public void progressBar() {
 		Platform.runLater(new Runnable() {
