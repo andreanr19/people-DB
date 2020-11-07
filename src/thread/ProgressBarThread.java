@@ -7,23 +7,25 @@ import ui.PeopleController;
 import java.io.FileWriter;
 import java.io.PrintWriter;
 
-public class ProgressBarThread extends Thread{
+public class ProgressBarThread extends Thread {
 
     private PeopleController pc;
     private Generator g;
     private boolean active;
     private int q;
 
-    public ProgressBarThread (PeopleController pc, Generator g, int q){
+    public ProgressBarThread(PeopleController pc, Generator g, int q) {
+        setDaemon(true);
         this.pc = pc;
         this.g = g;
         this.q = q;
         active = true;
+
     }
 
     @Override
-    public void run(){
-            try{
+    public void run() {
+        try {
             int count = 0;
             g.setQ(q);
             g.loadDataToGenerate(6000);
@@ -37,18 +39,18 @@ public class ProgressBarThread extends Thread{
                 pc.progressBar();
             }
             pw.close();
-            try{
+            try {
                 sleep(1);
-            }catch (InterruptedException e){
+            } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         } catch (Exception e) {
-                e.printStackTrace();
-            }
+            e.printStackTrace();
+        }
 
     }
 
-    public void desactivate(){
+    public void desactivate() {
         active = false;
     }
 }
