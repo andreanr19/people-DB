@@ -1,10 +1,11 @@
 package model.data_structures_trie;
 
+import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
 
 
-public class AutocompleteTrie {
+public class AutocompleteTrie implements Serializable {
 
 	public TrieNode root;
 	private int size;

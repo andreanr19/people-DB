@@ -191,7 +191,30 @@ public class PeopleController implements Initializable {
 			}
 		}
 	}
+	
+	@FXML
+	void saveCurrentState(ActionEvent event) {
+		try {
+			db.saveState();
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
+	@FXML
+	void loadPreviousState(ActionEvent event) {
+		try {
+			db.loadState();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 	@FXML
 	void searchBtn(ActionEvent event) {
 		String search = idSearchTF.getText();

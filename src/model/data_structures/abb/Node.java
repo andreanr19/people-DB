@@ -1,8 +1,10 @@
 package model.data_structures.abb;
 
+import java.io.Serializable;
+
 import model.Person;
 
-public class Node<K extends Comparable<K>, T extends Person> {
+public class Node<K extends Comparable<K>, T extends Person> implements Serializable {
 	protected K key;
 	protected T value;
 	protected int height;

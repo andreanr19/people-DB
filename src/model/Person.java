@@ -1,6 +1,8 @@
 package model;
 
-public class Person {
+import java.io.Serializable;
+
+public class Person implements Serializable {
 
     // // código (autogenerado), nombre, apellido, sexo, fecha de nacimiento,
     // estatura,

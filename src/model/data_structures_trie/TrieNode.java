@@ -1,5 +1,6 @@
 package model.data_structures_trie;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Set;
 
@@ -8,7 +9,7 @@ import java.util.Set;
  * @author andreanunezrodriguez
  *
  */
-public class TrieNode {
+public class TrieNode implements Serializable {
 
 	private HashMap<Character, TrieNode> children;
 	private String text;

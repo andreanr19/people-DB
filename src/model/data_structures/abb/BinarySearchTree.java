@@ -423,7 +423,25 @@ public class BinarySearchTree<K extends Comparable<K>, T extends Person> impleme
 			System.out.print(n.value + ", ");
 		}
 	}
+	
+	public List<Person> returnPeople(Node<K,T> node){
+		List<Person> t= new ArrayList<Person>();
+		if(root==null) 
+			return t;
+		return returnPeople(root,t);
+	}
 
+	private List<Person> returnPeople(Node<K,T> node, List<Person> t){
+		if(node==null) {
+			return t;
+		}else {
+			t.add(node.getValue());
+			returnPeople(node.getLeft(),t);
+			returnPeople(node.getRight(),t);
+			
+		}
+		return t;
+	}
 	public T searchNode2(K dato) {
 		return root == null ? null : root.search(dato);
 	}
