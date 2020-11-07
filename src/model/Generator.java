@@ -25,13 +25,17 @@ public class Generator {
 
     public int count, q, countID;
 
-    private List<String> names, lastNames;
+    private List<String> names, lastNames, countries;
+    public double[] populationFactorByCountry;
 
     public Generator() {
 
         names = new ArrayList<>();
         lastNames = new ArrayList<>();
+        countries = new ArrayList<>();
         countID = 0000000000;
+        populationFactorByCountry = new double[36];
+
     }
 
     public void generateData(int q) throws IOException {
@@ -94,15 +98,18 @@ public class Generator {
             age = rN.nextInt(89 - 65 + 1) + 65;
 
         }
+
         countID++;
-        return tID + "," + nameAndGender.split(";")[0] + "," + lastName + "," + gender + "," + age + "," + "0" + ","
-                + "Colombia" + "\n";
+        return tID + "," + nameAndGender.split(";")[0] + "," + lastName + "," + gender + "," + age + ","
+                + ((int) (Math.random() * (double) 100) + 100) + "," + countries.get(rN.nextInt(countries.size()))
+                + "\n";
     }
 
     public void loadDataToGenerate(int x) throws IOException {
 
         BufferedReader brNames = new BufferedReader(new FileReader(new File(PATHTOREADNAMES)));
         BufferedReader brLNames = new BufferedReader(new FileReader(new File(PATHTOREADLASTNAMES)));
+
         brLNames.readLine();
 
         for (int i = 0; i < x; i++) {
@@ -110,6 +117,19 @@ public class Generator {
             lastNames.add(brLNames.readLine().split(",")[0]);
         }
 
+        if (countries.isEmpty()) {
+            BufferedReader brCountries = new BufferedReader(new FileReader(new File(PATHTOREADCOUNTRIES)));
+
+            brCountries.readLine();
+            for (int i = 0; i < 36; i++) {
+                String t = brCountries.readLine();
+                countries.add(t.split(";")[0]);
+                populationFactorByCountry[i] = Double.parseDouble(t.split(";")[1]);
+            }
+
+            brCountries.close();
+
+        }
         brNames.close();
         brLNames.close();
     }
