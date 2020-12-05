@@ -453,6 +453,7 @@ public class PeopleController implements Initializable {
 		alturaTF.setEditable(true);
 		nacionalidadTF.setEditable(true);
 		editButton.setDisable(true);
+		confirmButton.setDisable(false);
 
 	}
 
