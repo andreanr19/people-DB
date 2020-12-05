@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="689.0" prefWidth="1000.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+  <tabs>
+      <Tab text="Generar">
+         <content>
+            <AnchorPane fx:id="generatePeopleAP" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="450.0" layoutX="267.0" layoutY="169.0" stroke="BLACK" strokeType="INSIDE" width="606.0" />
+                  <TextField fx:id="amountGeneratorTF" layoutX="411.0" layoutY="274.0" prefHeight="30.0" prefWidth="267.0" promptText="Cantidad personas a generar" />
+                  <Button fx:id="generateBT" layoutX="533.0" layoutY="335.0" mnemonicParsing="false" onAction="#generateBT" text="Generar">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font></Button>
+                  <Button layoutX="686.0" layoutY="276.0" mnemonicParsing="false" onAction="#generateMaxBT" text="max" textFill="#000000ae" />
+                  <Label layoutX="39.0" layoutY="105.0" prefHeight="57.0" prefWidth="359.0" text="Ingrese la cantidad de personas que desea generar:" textAlignment="CENTER" wrapText="true" />
+                  <Label layoutX="14.0" layoutY="14.0" text="Generacion de datos">
+                     <font>
+                        <Font name="System Bold" size="42.0" />
+                     </font>
+                  </Label>
+                  <ProgressBar fx:id="progressBar" layoutX="372.0" layoutY="474.0" prefHeight="18.0" prefWidth="399.0" progress="0.0" />
+                  <Label layoutX="452.0" layoutY="442.0" text="Progreso de generación de los datos" />
+                  <Label layoutX="383.0" layoutY="508.0" text="Tiempo demorado en milisegundos:" />
+                  <Label fx:id="timeLabel" layoutX="398.0" layoutY="436.0">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+         </content>
+      </Tab>
+    <Tab text="Agregar">
+      <content>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="450.0" layoutX="246.0" layoutY="129.0" stroke="BLACK" strokeType="INSIDE" width="606.0" />
+                  <Label layoutX="33.0" layoutY="92.0" text="Ingresar la información de la persona que se desea crear:" />
+                  <TextField fx:id="idCreateTF" layoutX="352.0" layoutY="181.0" prefHeight="25.0" prefWidth="311.0" promptText="Ingrese ID." />
+                  <TextField fx:id="nameCreateTF" disable="true" layoutX="352.0" layoutY="225.0" prefHeight="26.0" prefWidth="172.0" promptText="Ingrese primer nombre." />
+                  <Button fx:id="checkAddBT" layoutX="678.0" layoutY="181.0" mnemonicParsing="false" onAction="#checkAddBT" text="Verificar ID." />
+                  <TextField fx:id="lastNameTF" disable="true" layoutX="542.0" layoutY="225.0" prefHeight="26.0" prefWidth="168.0" promptText="Ingrese primer apellido." />
+                  <RadioButton fx:id="femaleRB" disable="true" layoutX="356.0" layoutY="403.0" mnemonicParsing="false" text="Femenino">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="genderSel" />
+                     </toggleGroup></RadioButton>
+                  <Label layoutX="351.0" layoutY="377.0" text="Género de la persona:" />
+                  <RadioButton fx:id="manRB" disable="true" layoutX="534.0" layoutY="403.0" mnemonicParsing="false" text="Masculino" toggleGroup="$genderSel" />
+                  <TextField fx:id="heightCreateTF" layoutX="352.0" layoutY="321.0" prefHeight="25.0" prefWidth="313.0" promptText="Ingrese la estatura (cms)" />
+                  <Label layoutX="22.0" layoutY="14.0" text="Nueva persona">
+                     <font>
+                        <Font name="System Bold" size="42.0" />
+                     </font>
+                  </Label>
+                  <DatePicker fx:id="birthDateTF" disable="true" layoutX="351.0" layoutY="266.0" prefHeight="26.0" prefWidth="314.0" promptText="Seleccione la fecha de nacimiento" />
+                  <Button fx:id="addPersonBT" disable="true" layoutX="531.0" layoutY="536.0" mnemonicParsing="false" onAction="#addPersonBT" text="Agregar">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Button>
+                  <TextField fx:id="nationalityCreateTF" layoutX="357.0" layoutY="449.0" prefHeight="25.0" prefWidth="313.0" promptText="Ingrese la estatura (cms)" />
+               </children></AnchorPane>
+      </content>
+    </Tab>
+      <Tab text="Buscar/Modificar">
+         <content>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <Label layoutX="89.0" layoutY="72.0" text="Ingrese la información de la persona que desea buscar" />
+                  <TextField fx:id="idSearchTF" layoutX="87.0" layoutY="96.0" onKeyReleased="#txtKeyReleased" prefHeight="25.0" prefWidth="299.0" promptText="Ingrese el id de la persona" />
+                  <Button fx:id="searchBT" layoutX="398.0" layoutY="96.0" mnemonicParsing="false" onAction="#searchBtn" text="Buscar" />
+                  <Separator layoutY="141.0" prefHeight="2.0" prefWidth="809.0" />
+                  <RadioButton fx:id="autocompleteByName" layoutX="90.0" layoutY="43.0" mnemonicParsing="false" text="Nombre">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="itemsSearch" />
+                     </toggleGroup>
+                  </RadioButton>
+                  <Label layoutX="53.0" layoutY="16.0" text="Seleccione el criterio de busqueda que desea utilizar" />
+                  <RadioButton fx:id="autocompleteByLastName" layoutX="188.0" layoutY="43.0" mnemonicParsing="false" text="Apellido" toggleGroup="$itemsSearch" />
+                  <RadioButton fx:id="autocompleteByNameAndLN" layoutX="292.0" layoutY="43.0" mnemonicParsing="false" text="Nombre y apellido" toggleGroup="$itemsSearch" />
+                  <RadioButton fx:id="autocompleteByID" layoutX="443.0" layoutY="43.0" mnemonicParsing="false" text="Id" toggleGroup="$itemsSearch" />
+                  <TextField fx:id="found" editable="false" layoutX="761.0" layoutY="95.0" prefHeight="27.0" prefWidth="67.0" />
+                  <Label layoutX="602.0" layoutY="99.0" text="Número de resultados:" />
+                  <Pane fx:id="paneResults" layoutX="4.0" layoutY="144.0" prefHeight="512.0" prefWidth="994.0">
+                     <children>
+                        <AnchorPane id="AnchorPane">
+                           <children>
+                              <SplitPane dividerPositions="0.6616541353383458" focusTraversable="true" prefHeight="494.0" prefWidth="993.0">
+                                 <items>
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="536.0" prefWidth="652.0">
+                                       <children>
+                                          <TableView fx:id="foundPeople" prefHeight="503.0" prefWidth="657.0">
+                                             <columns>
+                                                <TableColumn fx:id="idCL" prefWidth="107.0" text="ID" />
+                                                <TableColumn fx:id="nameCL" prefWidth="89.0" text="Nombre" />
+                                                <TableColumn fx:id="lastNameCL" prefWidth="97.0" text="Apellido" />
+                                                <TableColumn fx:id="ageCL" prefWidth="95.0" text="Edad" />
+                                                <TableColumn fx:id="genderCL" prefWidth="60.0" text="Genero" />
+                                                <TableColumn fx:id="heightCL" prefWidth="83.33334350585938" text="Altura (cm)" />
+                                                <TableColumn fx:id="nationalityCL" prefWidth="125.0" text="Nacionalidad" />
+                                             </columns>
+                                          </TableView>
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="473.0" prefWidth="331.0">
+                                       <children>
+                                          <Label layoutX="39.0" layoutY="61.0" text="Nombre:">
+                                             <font>
+                                                <Font name="System Bold Italic" size="15.0" fx:id="x1" />
+                                             </font>
+                                          </Label>
+                                          <Label font="$x1" layoutX="43.0" layoutY="212.0" text="Genero:" />
+                                          <Label font="$x1" layoutX="48.0" layoutY="165.0" text="Edad:" />
+                                          <Label font="$x1" layoutX="42.0" layoutY="114.0" text="Apellidos:" />
+                                          <TextField fx:id="nombreTF" editable="false" layoutX="39.0" layoutY="85.0" prefHeight="26.0" prefWidth="239.0" />
+                                          <TextField fx:id="apellidoTF" editable="false" layoutX="41.0" layoutY="138.0" prefHeight="26.0" prefWidth="239.0" />
+                                          <TextField fx:id="edadTF" editable="false" layoutX="41.0" layoutY="185.0" prefHeight="26.0" prefWidth="239.0" />
+                                          <TextField fx:id="generoTF" editable="false" layoutX="41.0" layoutY="237.0" prefHeight="26.0" prefWidth="239.0" />
+                                          <Button fx:id="editButton" font="$x1" layoutX="12.0" layoutY="402.0" mnemonicParsing="false" onAction="#editBtn" prefHeight="29.0" prefWidth="138.0" text="Modificar" />
+                                          <Button fx:id="removeButton" font="$x1" layoutX="53.0" layoutY="445.0" mnemonicParsing="false" onAction="#removePersonBtn" prefHeight="38.0" prefWidth="234.0" text="Eliminar" />
+                                          <Button fx:id="confirmButton" disable="true" font="$x1" layoutX="176.0" layoutY="401.0" mnemonicParsing="false" onAction="#confirmChangesBtn" prefHeight="30.0" prefWidth="134.0" text="Confirmar" />
+                                          <Label layoutX="36.0" layoutY="274.0" text="Altura:">
+                                             <font>
+                                                <Font name="System Bold Italic" size="15.0" fx:id="x11" />
+                                             </font>
+                                          </Label>
+                                          <TextField fx:id="alturaTF" editable="false" layoutX="41.0" layoutY="304.0" prefHeight="26.0" prefWidth="239.0" />
+                                          <Label layoutX="39.0" layoutY="331.0" text="Nacionalidad:">
+                                             <font>
+                                                <Font name="System Bold Italic" size="15.0" fx:id="x111" />
+                                             </font>
+                                          </Label>
+                                          <TextField fx:id="nacionalidadTF" editable="false" layoutX="39.0" layoutY="360.0" prefHeight="26.0" prefWidth="239.0" />
+                                          <Separator layoutX="-2.0" layoutY="436.0" prefHeight="1.0" prefWidth="326.0" />
+                                          <TextField fx:id="idTF" editable="false" layoutX="39.0" layoutY="34.0" prefHeight="26.0" prefWidth="239.0" />
+                                          <Label layoutX="39.0" layoutY="14.0" text="ID:">
+                                             <font>
+                                                <Font name="System Bold Italic" size="15.0" fx:id="x12" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </AnchorPane>
+                                 </items>
+                              </SplitPane>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </Pane>
+               </children></AnchorPane>
+         </content>
+      </Tab>
+      <Tab text="Archivo">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <Button layoutX="279.0" layoutY="210.0" mnemonicParsing="false" onAction="#saveCurrentState" prefHeight="27.0" prefWidth="299.0" text="Guardar y cerrar" />
+                  <Button layoutX="281.0" layoutY="373.0" mnemonicParsing="false" onAction="#loadPreviousState" prefHeight="27.0" prefWidth="296.0" text="Cargar data guardada" />
+               </children>
+            </AnchorPane>
+        </content>
+      </Tab>
+  </tabs>
+</TabPane>
